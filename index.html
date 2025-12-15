@@ -2,14 +2,29 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="description" content="Sabrine SJK - Thérapeute Énergétique. Reiki Usui, Lahochi, Magnétisme, Harmonisation des Chakras. Cabinet à Beauvoisin.">
     <title>Sabrine SJK - Thérapeute Énergétique | Reiki & Magnétisme</title>
+    
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Sabrine SJK">
+    
+    <!-- Android Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#8B7355">
+    
+    <!-- MS Tiles -->
+    <meta name="msapplication-TileColor" content="#8B7355">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/locales/fr.js'></script>
 </head>
 <body>
     <!-- Bandeau Promo -->
@@ -25,17 +40,18 @@
                     <h1>Sabrine SJK</h1>
                     <p class="tagline">Thérapeute Énergétique</p>
                 </div>
-                <button class="menu-toggle" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
                 </button>
-                <ul class="nav-menu">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#about">À Propos</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#temoignages">Témoignages</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                <ul class="nav-menu" role="navigation">
+                    <li><a href="#accueil" class="nav-link"><i class="fas fa-home"></i> <span>Accueil</span></a></li>
+                    <li><a href="#services" class="nav-link"><i class="fas fa-spa"></i> <span>Services</span></a></li>
+                    <li><a href="#reservation" class="nav-link"><i class="fas fa-calendar-check"></i> <span>Réserver</span></a></li>
+                    <li><a href="#temoignages" class="nav-link"><i class="fas fa-star"></i> <span>Témoignages</span></a></li>
+                    <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
+                    <li><a href="#" class="btn-membre" onclick="openMemberSpace(event)"><i class="fas fa-user-circle"></i> <span>Mon Espace</span></a></li>
                 </ul>
             </div>
         </nav>
@@ -43,54 +59,43 @@
 
     <!-- Hero Section -->
     <section id="accueil" class="hero">
+        <div class="hero-background">
+            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1920&q=80" alt="Nature zen" class="hero-bg-img">
+        </div>
+        <div class="hero-particles"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h2 class="hero-title">✨ Alchimiste de l'Âme ✨</h2>
-            <p class="hero-subtitle">Reiki • Magnétisme • Lahochi • Harmonisation des Chakras</p>
-            <a href="#contact" class="btn btn-primary">Prendre Rendez-vous</a>
+            <div class="hero-icon-group">
+                <span class="floating-icon">✨</span>
+                <span class="floating-icon">🌙</span>
+                <span class="floating-icon">⭐</span>
+            </div>
+            <h2 class="hero-title">Sabrine SJK</h2>
+            <p class="hero-subtitle">Thérapeute Énergétique • Alchimiste de l'Âme</p>
+            <div class="hero-badges">
+                <span class="badge"><i class="fas fa-hands"></i> Reiki</span>
+                <span class="badge"><i class="fas fa-magnet"></i> Magnétisme</span>
+                <span class="badge"><i class="fas fa-star"></i> Lahochi</span>
+            </div>
+            <div class="hero-cta">
+                <a href="#reservation" class="btn btn-primary btn-large"><i class="fas fa-calendar-check"></i> Réserver en ligne</a>
+                <a href="tel:0786996950" class="btn btn-secondary btn-large"><i class="fas fa-phone"></i> 07 86 99 69 50</a>
+            </div>
         </div>
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-image">
-                    <div class="image-placeholder">
-                        <i class="fas fa-spa"></i>
-                    </div>
-                </div>
-                <div class="about-content">
-                    <span class="section-label">Qui suis-je ?</span>
-                    <h2>Sabrine SJK</h2>
-                    <p class="lead">Thérapeute énergétique certifiée, je vous accompagne dans votre quête d'harmonie et de bien-être.</p>
-                    <p>Formée au Reiki Usui, Lahochi, magnétisme et harmonisation des chakras, j'ai à cœur d'offrir un accompagnement personnalisé qui prend en compte la globalité de votre être. Mon approche holistique considère l'interaction entre le corps, l'esprit et l'âme.</p>
-                    <p>Chaque séance est unique et adaptée à vos besoins spécifiques, dans un espace sacré bienveillant et apaisant.</p>
-                    <div class="credentials">
-                        <div class="credential-item">
-                            <i class="fas fa-certificate"></i>
-                            <span>Certifiée Reiki Usui, Lahochi & Magnétisme</span>
-                        </div>
-                        <div class="credential-item">
-                            <i class="fas fa-heart"></i>
-                            <span>Intuition développée & guidance spirituelle</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Mes Services</span>
-                <h2>Un Accompagnement Complet</h2>
-                <p>Des thérapies adaptées à vos besoins pour retrouver équilibre et sérénité</p>
+                <span class="section-label">✨ Voyages Énergétiques</span>
+                <h2>Soins & Tarifs</h2>
+                <p>Chaque soin est une invitation à reconnecter avec votre essence divine</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
@@ -105,6 +110,7 @@
                         <li>Reconnexion à votre essence</li>
                     </ul>
                     <div class="price">60€ • 1h</div>
+                    <button type="button" class="btn btn-primary btn-service-book" data-service="reiki" data-name="Reiki Usui" data-price="60" data-duration="60"><i class="fas fa-calendar-plus"></i> Réserver ce soin</button>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -118,6 +124,7 @@
                         <li>Guérison profonde</li>
                     </ul>
                     <div class="price">60€ • 1h</div>
+                    <button type="button" class="btn btn-primary btn-service-book" data-service="lahochi" data-name="Lahochi" data-price="60" data-duration="60"><i class="fas fa-calendar-plus"></i> Réserver ce soin</button>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -131,6 +138,7 @@
                         <li>Libération émotionnelle</li>
                     </ul>
                     <div class="price">60€ • 1h</div>
+                    <button type="button" class="btn btn-primary btn-service-book" data-service="magnetisme" data-name="Magnétisme" data-price="60" data-duration="60"><i class="fas fa-calendar-plus"></i> Réserver ce soin</button>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -144,6 +152,7 @@
                         <li>Alignement corps-esprit-âme</li>
                     </ul>
                     <div class="price">70€ • 1h15</div>
+                    <button type="button" class="btn btn-primary btn-service-book" data-service="chakras" data-name="Harmonisation des Chakras" data-price="70" data-duration="75"><i class="fas fa-calendar-plus"></i> Réserver ce soin</button>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -157,6 +166,7 @@
                         <li>Adaptation intuitive</li>
                     </ul>
                     <div class="price">80€ • 1h30</div>
+                    <button type="button" class="btn btn-primary btn-service-book" data-service="personnalise" data-name="Soin Personnalisé" data-price="80" data-duration="90"><i class="fas fa-calendar-plus"></i> Réserver ce soin</button>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -170,6 +180,149 @@
                         <li>Énergie sans frontières</li>
                     </ul>
                     <div class="price">50€ • 45min</div>
+                    <button type="button" class="btn btn-primary btn-service-book" data-service="distance" data-name="Soin à Distance" data-price="50" data-duration="45"><i class="fas fa-calendar-plus"></i> Réserver ce soin</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="reservation">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">📅 Réservation</span>
+                <h2>Prenez Rendez-vous</h2>
+                <p>Choisissez votre créneau et réservez en ligne</p>
+            </div>
+            
+            <div class="reservation-grid">
+                <div class="calendar-container">
+                    <h3><i class="fas fa-calendar-alt"></i> Disponibilités</h3>
+                    <div id="calendar"></div>
+                    <div class="calendar-legend">
+                        <span><span class="legend-dot available"></span> Disponible</span>
+                        <span><span class="legend-dot booked"></span> Réservé</span>
+                    </div>
+                </div>
+                
+                <div class="booking-form-container">
+                    <h3><i class="fas fa-file-alt"></i> Formulaire de Réservation</h3>
+                    <form class="booking-form" id="bookingForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="booking-name"><i class="fas fa-user"></i> Nom complet *</label>
+                                <input type="text" id="booking-name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="booking-phone"><i class="fas fa-phone"></i> Téléphone *</label>
+                                <input type="tel" id="booking-phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="booking-email"><i class="fas fa-envelope"></i> Email *</label>
+                            <input type="email" id="booking-email" name="email" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="booking-date"><i class="fas fa-calendar"></i> Date souhaitée *</label>
+                                <input type="date" id="booking-date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="booking-time"><i class="fas fa-clock"></i> Heure *</label>
+                                <select id="booking-time" name="time" required>
+                                    <option value="">Sélectionnez...</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="10:30">10:30</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:30">15:30</option>
+                                    <option value="17:00">17:00</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="booking-service"><i class="fas fa-spa"></i> Type de soin *</label>
+                            <select id="booking-service" name="service" required>
+                                <option value="">Sélectionnez un soin...</option>
+                                <option value="reiki">Reiki Usui - 60€ (1h)</option>
+                                <option value="lahochi">Lahochi - 60€ (1h)</option>
+                                <option value="magnetisme">Magnétisme - 60€ (1h)</option>
+                                <option value="chakras">Harmonisation Chakras - 70€ (1h15)</option>
+                                <option value="personnalise">Soin Personnalisé - 80€ (1h30)</option>
+                                <option value="distance">Soin à Distance - 50€ (45min)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="booking-promo"><i class="fas fa-gift"></i> Code promo (optionnel)</label>
+                            <input type="text" id="booking-promo" name="promo" placeholder="DECOUVERTE20">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="booking-message"><i class="fas fa-comment"></i> Message / Besoins spécifiques</label>
+                            <textarea id="booking-message" name="message" rows="3" placeholder="Décrivez brièvement vos attentes..."></textarea>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="booking-accept" name="accept" required>
+                            <label for="booking-accept">J'accepte les <a href="#cgv">conditions générales</a> et la <a href="#confidentialite">politique de confidentialité</a> *</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-check-circle"></i> Confirmer la réservation
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">🌿 Ambiance</span>
+                <h2>Un Espace de Paix</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80" alt="Méditation en nature" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Méditation</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80" alt="Pierres de guérison" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Cristaux & Énergies</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&q=80" alt="Yoga et bien-être" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Harmonisation</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80" alt="Spa relaxation" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Détente</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80" alt="Nature apaisante" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Nature</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1447452001602-7090c7ab2db3?w=800&q=80" alt="Herbes aromatiques" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Plantes Sacrées</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -179,8 +332,8 @@
     <section id="temoignages" class="testimonials">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Témoignages</span>
-                <h2>Ils Ont Retrouvé l'Équilibre</h2>
+                <span class="section-label">💫 Témoignages</span>
+                <h2>Expériences Partagées</h2>
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
@@ -232,87 +385,50 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <span class="section-label">Contact</span>
-                    <h2>Prenez Rendez-vous</h2>
-                    <p>Je serais ravie de vous accompagner dans votre cheminement vers le bien-être. N'hésitez pas à me contacter pour toute question ou pour prendre rendez-vous.</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <strong>Téléphone</strong>
-                                <p><a href="tel:0786996950">07 86 99 69 50</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <strong>Email</strong>
-                                <p><a href="mailto:sabrine.sjk@gmail.com">sabrine.sjk@gmail.com</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <strong>Adresse</strong>
-                                <p>180 rue des mimosas<br>Hameau de Franquevaux, Beauvoisin</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-clock"></i>
-                            <div>
-                                <strong>Horaires</strong>
-                                <p>Lundi - Samedi : 9h - 19h</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/sabrinesjktherapeuteholistique" target="_blank" aria-label="Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                    </div>
+            <div class="section-header">
+                <span class="section-label">💌 Contact</span>
+                <h2>Restons Connectés</h2>
+            </div>
+            
+            <div class="contact-quick">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Adresse</h3>
+                    <p>180 rue des mimosas<br>Hameau de Franquevaux<br>Beauvoisin</p>
                 </div>
-
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Nom complet *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Téléphone</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="service">Service souhaité</label>
-                        <select id="service" name="service">
-                            <option value="">Sélectionnez un service</option>
-                            <option value="soins-energetiques">Soins Énergétiques</option>
-                            <option value="therapie-emotionnelle">Thérapie Émotionnelle</option>
-                            <option value="meditation">Méditation & Relaxation</option>
-                            <option value="naturopathie">Naturopathie</option>
-                            <option value="spirituel">Accompagnement Spirituel</option>
-                            <option value="personnalise">Séance Personnalisée</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Envoyer le message</button>
-                </form>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Téléphone</h3>
+                    <p><a href="tel:0786996950">07 86 99 69 50</a></p>
+                    <a href="tel:0786996950" class="btn btn-primary btn-sm">Appeler</a>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p><a href="mailto:sabrine.sjk@gmail.com">sabrine.sjk@gmail.com</a></p>
+                    <a href="mailto:sabrine.sjk@gmail.com" class="btn btn-primary btn-sm">Écrire</a>
+                </div>
+                <div class="contact-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>Message instantané</p>
+                    <a href="https://wa.me/33786996950" target="_blank" class="btn btn-primary btn-sm">Discuter</a>
+                </div>
+            </div>
+            
+            <div class="social-links-center">
+                <a href="https://www.facebook.com/sabrinesjktherapeuteholistique" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Facebook" class="social-btn facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="https://www.instagram.com/sabrinesjk" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Instagram" class="social-btn instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://wa.me/33786996950" target="_blank" rel="noopener noreferrer" aria-label="Contactez-nous sur WhatsApp" class="social-btn whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </a>
             </div>
         </div>
     </section>
@@ -346,23 +462,329 @@
                 <div class="footer-section">
                     <h4>Suivez-moi</h4>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/sabrinesjktherapeuteholistique" target="_blank" aria-label="Facebook">
-                            <i class="fab fa-facebook"></i>
+                        <a href="https://www.facebook.com/sabrinesjktherapeuteholistique" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Page Facebook">
+                            <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" aria-label="Instagram">
+                        <a href="https://www.instagram.com/sabrinesjk" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Profil Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
+                        <a href="https://wa.me/33786996950" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="Contactez sur WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
                         </a>
                     </div>
                 </div>
             </div>
+            <div class="footer-newsletter">
+                <h4>📧 Newsletter</h4>
+                <p>Recevez conseils et offres exclusives</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Votre email" required aria-label="Email pour newsletter">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2025 Sabrine SJK - Thérapeute Holistique. Tous droits réservés.</p>
+                <p>&copy; 2025 Sabrine SJK - Thérapeute Énergétique. Tous droits réservés.</p>
+                <p class="footer-credits">Site professionnel sécurisé <i class="fas fa-lock"></i></p>
             </div>
         </div>
     </footer>
+
+    <!-- Modal Réservation Détaillée -->
+    <div id="bookingDetailsModal" class="modal">
+        <div class="modal-content modal-large">
+            <span class="modal-close" onclick="closeBookingDetails()">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-calendar-check"></i>
+                <h2>Réservation Détaillée</h2>
+            </div>
+            
+            <div class="booking-steps">
+                <div class="step active" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Service</span>
+                </div>
+                <div class="step" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Participants</span>
+                </div>
+                <div class="step" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Informations</span>
+                </div>
+                <div class="step" data-step="4">
+                    <span class="step-number">4</span>
+                    <span class="step-label">Confirmation</span>
+                </div>
+            </div>
+            
+            <form id="detailedBookingForm" class="booking-form-detailed">
+                <!-- Étape 1: Service sélectionné -->
+                <div class="form-step active" data-step="1">
+                    <div class="service-summary">
+                        <h3><i class="fas fa-spa"></i> <span id="selectedServiceName"></span></h3>
+                        <div class="service-details">
+                            <div class="detail-item">
+                                <i class="fas fa-euro-sign"></i>
+                                <span>Prix unitaire : <strong id="selectedServicePrice"></strong></span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Durée : <strong id="selectedServiceDuration"></strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" onclick="nextStep(2)">Suivant <i class="fas fa-arrow-right"></i></button>
+                </div>
+                
+                <!-- Étape 2: Nombre de personnes -->
+                <div class="form-step" data-step="2">
+                    <h3><i class="fas fa-users"></i> Nombre de participants</h3>
+                    <div class="participants-selector">
+                        <button type="button" class="qty-btn" onclick="changeQuantity(-1)"><i class="fas fa-minus"></i></button>
+                        <input type="number" id="participants" name="participants" value="1" min="1" max="10" readonly>
+                        <button type="button" class="qty-btn" onclick="changeQuantity(1)"><i class="fas fa-plus"></i></button>
+                    </div>
+                    <p class="help-text">Séances individuelles ou en groupe (jusqu'à 10 personnes)</p>
+                    
+                    <div class="price-calculator">
+                        <div class="calc-row">
+                            <span>Prix unitaire :</span>
+                            <span id="unitPrice">60€</span>
+                        </div>
+                        <div class="calc-row">
+                            <span>Nombre de personnes :</span>
+                            <span id="quantity">1</span>
+                        </div>
+                        <div class="calc-row discount">
+                            <span>Remise groupe (>3 pers.) :</span>
+                            <span id="discount">0€</span>
+                        </div>
+                        <div class="calc-row total">
+                            <span>Total :</span>
+                            <span id="totalPrice">60€</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="nextStep(1)"><i class="fas fa-arrow-left"></i> Retour</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(3)">Suivant <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Étape 3: Informations personnelles -->
+                <div class="form-step" data-step="3">
+                    <h3><i class="fas fa-user-edit"></i> Vos informations</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="detail-firstname"><i class="fas fa-user"></i> Prénom *</label>
+                            <input type="text" id="detail-firstname" name="firstname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="detail-lastname"><i class="fas fa-user"></i> Nom *</label>
+                            <input type="text" id="detail-lastname" name="lastname" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="detail-email"><i class="fas fa-envelope"></i> Email *</label>
+                            <input type="email" id="detail-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="detail-phone"><i class="fas fa-phone"></i> Téléphone *</label>
+                            <input type="tel" id="detail-phone" name="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="detail-date"><i class="fas fa-calendar"></i> Date souhaitée *</label>
+                            <input type="date" id="detail-date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="detail-time"><i class="fas fa-clock"></i> Heure *</label>
+                            <select id="detail-time" name="time" required>
+                                <option value="">Sélectionnez...</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:30">10:30</option>
+                                <option value="12:00">12:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:30">15:30</option>
+                                <option value="17:00">17:00</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="detail-message"><i class="fas fa-comment"></i> Message / Besoins spécifiques</label>
+                        <textarea id="detail-message" name="message" rows="3" placeholder="Décrivez vos attentes, besoins particuliers..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="detail-promo"><i class="fas fa-gift"></i> Code promo</label>
+                        <input type="text" id="detail-promo" name="promo" placeholder="DECOUVERTE20" oninput="applyPromoCode()">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="nextStep(2)"><i class="fas fa-arrow-left"></i> Retour</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(4)">Suivant <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Étape 4: Confirmation et devis -->
+                <div class="form-step" data-step="4">
+                    <h3><i class="fas fa-file-invoice"></i> Récapitulatif & Devis</h3>
+                    
+                    <div class="booking-summary">
+                        <div class="summary-section">
+                            <h4>🌿 Service</h4>
+                            <p id="summary-service"></p>
+                        </div>
+                        
+                        <div class="summary-section">
+                            <h4>👥 Participants</h4>
+                            <p id="summary-participants"></p>
+                        </div>
+                        
+                        <div class="summary-section">
+                            <h4>👤 Coordonnées</h4>
+                            <p id="summary-contact"></p>
+                        </div>
+                        
+                        <div class="summary-section">
+                            <h4>📅 Rendez-vous</h4>
+                            <p id="summary-datetime"></p>
+                        </div>
+                        
+                        <div class="summary-section devis">
+                            <h4>💰 Devis</h4>
+                            <div class="devis-details">
+                                <div class="devis-row">
+                                    <span>Service :</span>
+                                    <span id="devis-service"></span>
+                                </div>
+                                <div class="devis-row">
+                                    <span>Participants :</span>
+                                    <span id="devis-qty"></span>
+                                </div>
+                                <div class="devis-row" id="devis-discount-row" style="display: none;">
+                                    <span>Remise :</span>
+                                    <span id="devis-discount" class="discount-amount"></span>
+                                </div>
+                                <div class="devis-row" id="devis-promo-row" style="display: none;">
+                                    <span>Code promo :</span>
+                                    <span id="devis-promo" class="discount-amount"></span>
+                                </div>
+                                <div class="devis-row total">
+                                    <span><strong>TOTAL TTC :</strong></span>
+                                    <span id="devis-total"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="detail-accept" name="accept" required>
+                        <label for="detail-accept">J'accepte les conditions et je confirme ma réservation *</label>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="nextStep(3)"><i class="fas fa-arrow-left"></i> Retour</button>
+                        <button type="submit" class="btn btn-primary btn-large"><i class="fas fa-check-circle"></i> Confirmer & Recevoir le devis par email</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Espace Membre -->
+    <div id="memberModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeMemberSpace()">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-user-circle"></i>
+                <h2>Espace Membre</h2>
+            </div>
+            
+            <div class="modal-tabs">
+                <button class="tab-btn active" onclick="showTab('login')">Connexion</button>
+                <button class="tab-btn" onclick="showTab('register')">Inscription</button>
+            </div>
+            
+            <!-- Formulaire de connexion -->
+            <div id="loginTab" class="tab-content active">
+                <form class="member-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="login-email"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password"><i class="fas fa-lock"></i> Mot de passe</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Se souvenir de moi</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-sign-in-alt"></i> Se connecter
+                    </button>
+                    <a href="#" class="forgot-link">Mot de passe oublié ?</a>
+                </form>
+            </div>
+            
+            <!-- Formulaire d'inscription -->
+            <div id="registerTab" class="tab-content">
+                <form class="member-form" id="registerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reg-firstname"><i class="fas fa-user"></i> Prénom *</label>
+                            <input type="text" id="reg-firstname" name="firstname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-lastname"><i class="fas fa-user"></i> Nom *</label>
+                            <input type="text" id="reg-lastname" name="lastname" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email"><i class="fas fa-envelope"></i> Email *</label>
+                        <input type="email" id="reg-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-phone"><i class="fas fa-phone"></i> Téléphone *</label>
+                        <input type="tel" id="reg-phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-birthdate"><i class="fas fa-calendar"></i> Date de naissance</label>
+                        <input type="date" id="reg-birthdate" name="birthdate">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reg-password"><i class="fas fa-lock"></i> Mot de passe *</label>
+                            <input type="password" id="reg-password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-confirm"><i class="fas fa-lock"></i> Confirmer *</label>
+                            <input type="password" id="reg-confirm" name="confirm" required>
+                        </div>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="reg-newsletter" name="newsletter">
+                        <label for="reg-newsletter">Recevoir la newsletter</label>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="reg-terms" name="terms" required>
+                        <label for="reg-terms">J'accepte les conditions d'utilisation *</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-user-plus"></i> Créer mon compte
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
