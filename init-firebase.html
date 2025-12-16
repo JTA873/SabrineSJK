@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initialisation Firebase - Sabrine SJK</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #8B7355;
+        }
+        .section h2 {
+            color: #8B7355;
+            margin-top: 0;
+        }
+        button {
+            background: linear-gradient(135deg, #8B7355, #C4A77D);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 115, 85, 0.3);
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .log {
+            background: #2d3748;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px;
+        }
+        .log-success { color: #00ff00; }
+        .log-error { color: #ff4444; }
+        .log-info { color: #44aaff; }
+        .log-warning { color: #ffaa00; }
+        .status {
+            text-align: center;
+            font-size: 18px;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+        .status.success { color: #00aa00; }
+        .status.error { color: #cc0000; }
+        .status.processing { color: #0066cc; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Initialisation Firebase</h1>
+        <p style="text-align: center; color: #666;">
+            Cette page initialise les collections Firestore pour le site de Sabrine SJK
+        </p>
+
+        <div class="section">
+            <h2>📋 Collections à créer</h2>
+            <ul>
+                <li><strong>services</strong> - Liste des services disponibles</li>
+                <li><strong>settings</strong> - Paramètres du site</li>
+                <li><strong>counters</strong> - Compteurs pour numéros de documents</li>
+                <li><strong>availability</strong> - Créneaux horaires disponibles</li>
+                <li><strong>testimonials</strong> - Témoignages clients</li>
+                <li><strong>bookings</strong> - Réservations des clients</li>
+                <li><strong>clients</strong> - Profils clients</li>
+                <li><strong>quotes</strong> - Devis générés</li>
+                <li><strong>invoices</strong> - Factures (placeholder)</li>
+                <li><strong>history</strong> - Historique des activités</li>
+            </ul>
+        </div>
+
+        <button id="initBtn">
+            🚀 Initialiser Firestore
+        </button>
+
+        <div class="status" id="status"></div>
+
+        <div class="log" id="logContainer"></div>
+    </div>
+
+    <script type="module">
+        import { db, collection, addDoc, setDoc, doc } from './firebase-config.js';
+
+        let logContainer;
+        let statusDiv;
+
+        function log(message, type = 'info') {
+            if (!logContainer) {
+                console.log(`[${type}] ${message}`);
+                return;
+            }
+            const entry = document.createElement('div');
+            entry.className = `log-entry log-${type}`;
+            const timestamp = new Date().toLocaleTimeString('fr-FR');
+            entry.textContent = `[${timestamp}] ${message}`;
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        function updateStatus(message, type = 'processing') {
+            if (!statusDiv) {
+                console.log(`[STATUS ${type}] ${message}`);
+                return;
+            }
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+        }
+        
+        console.log('✅ Script module chargé');
+
+        async function initializeFirestore() {
+            logContainer = document.getElementById('logContainer');
+            statusDiv = document.getElementById('status');
+            const btn = document.getElementById('initBtn');
+
+            btn.disabled = true;
+            logContainer.innerHTML = '';
+            log('🔥 Début de l\'initialisation Firebase...', 'info');
+            updateStatus('Initialisation en cours...', 'processing');
+
+            try {
+                // 1. Créer des exemples de services
+                log('📦 Création de la collection "services"...', 'info');
+                
+                const services = [
+                    {
+                        id: 'intuitif-adulte',
+                        name: 'Séance Intuitive Adulte',
+                        category: 'Séances Intuitives',
+                        price: 60,
+                        priceDistanciel: 50,
+                        duration: 60,
+                        description: 'Séance complète pour harmoniser le corps, l\'esprit et les émotions.',
+                        active: true,
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 'intuitif-enfant',
+                        name: 'Séance Intuitive Enfant',
+                        category: 'Séances Intuitives',
+                        price: 40,
+                        priceDistanciel: 30,
+                        duration: 45,
+                        description: 'Séance adaptée aux enfants de moins de 12 ans.',
+                        active: true,
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 'reiki-lahochi',
+                        name: 'Reiki ou Lahochi',
+                        category: 'Reiki & Lahochi',
+                        price: 60,
+                        duration: 60,
+                        description: 'Techniques de guérison énergétique japonaise et hawaïenne.',
+                        active: true,
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+
+                for (const service of services) {
+                    await addDoc(collection(db, "services"), service);
+                    log(`✓ Service créé: ${service.name}`, 'success');
+                }
+
+                // 2. Créer des paramètres par défaut
+                log('⚙️ Création de la collection "settings"...', 'info');
+                
+                await setDoc(doc(db, "settings", "site"), {
+                    siteName: 'Sabrine SJK - Thérapeute Énergétique',
+                    email: 'sabrine.sjk@gmail.com',
+                    phone: '07 86 99 69 50',
+                    address: 'Beauvoisin, France',
+                    openingHours: {
+                        monday: { open: '09:00', close: '18:00', available: true },
+                        tuesday: { open: '09:00', close: '18:00', available: true },
+                        wednesday: { open: '09:00', close: '18:00', available: true },
+                        thursday: { open: '09:00', close: '18:00', available: true },
+                        friday: { open: '09:00', close: '18:00', available: true },
+                        saturday: { open: '09:00', close: '13:00', available: true },
+                        sunday: { available: false }
+                    },
+                    bookingSlotDuration: 60,
+                    maxAdvanceBookingDays: 60,
+                    promoActive: true,
+                    promoDiscount: 20,
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString()
+                });
+                log('✓ Paramètres créés', 'success');
+
+                // 3. Créer les compteurs pour les numéros de documents
+                log('🔢 Création de la collection "counters"...', 'info');
+                
+                const currentDate = new Date();
+                const yearMonth = `${String(currentDate.getFullYear()).slice(2)}${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
+                
+                await setDoc(doc(db, 'counters', 'bookings'), {
+                    prefix: 'RES',
+                    currentMonth: yearMonth,
+                    count: 0,
+                    lastReset: currentDate.toISOString()
+                });
+                log('✓ Compteur réservations (RES) créé', 'success');
+                
+                await setDoc(doc(db, 'counters', 'invoices'), {
+                    prefix: 'FACT',
+                    currentMonth: yearMonth,
+                    count: 0,
+                    lastReset: currentDate.toISOString()
+                });
+                log('✓ Compteur factures (FACT) créé', 'success');
+                
+                await setDoc(doc(db, 'counters', 'quotes'), {
+                    prefix: 'DEV',
+                    currentMonth: yearMonth,
+                    count: 0,
+                    lastReset: currentDate.toISOString()
+                });
+                log('✓ Compteur devis (DEV) créé', 'success');
+
+                // 4. Créer des exemples de disponibilités
+                log('📅 Création de la collection "availability"...', 'info');
+                
+                const today = new Date();
+                for (let i = 1; i <= 14; i++) {
+                    const date = new Date(today);
+                    date.setDate(date.getDate() + i);
+                    
+                    const slots = [
+                        { time: '09:00', available: true },
+                        { time: '10:30', available: true },
+                        { time: '14:00', available: true },
+                        { time: '15:30', available: true },
+                        { time: '17:00', available: true }
+                    ];
+
+                    await addDoc(collection(db, "availability"), {
+                        date: date.toISOString().split('T')[0],
+                        slots: slots,
+                        createdAt: new Date().toISOString()
+                    });
+                }
+                log('✓ 14 jours de disponibilités créés', 'success');
+
+                // 5. Créer des exemples de témoignages
+                log('⭐ Création de la collection "testimonials"...', 'info');
+                
+                const testimonials = [
+                    {
+                        name: 'Sophie M.',
+                        rating: 5,
+                        text: 'Une expérience transformatrice ! Sabrine a su créer un espace de confiance et de bienveillance.',
+                        service: 'Séance Intuitive',
+                        date: new Date().toISOString(),
+                        approved: true
+                    },
+                    {
+                        name: 'Marc D.',
+                        rating: 5,
+                        text: 'Grâce à l\'accompagnement de Sabrine, j\'ai retrouvé sérénité et confiance en moi.',
+                        service: 'Reiki',
+                        date: new Date().toISOString(),
+                        approved: true
+                    },
+                    {
+                        name: 'Julie L.',
+                        rating: 5,
+                        text: 'Des soins énergétiques exceptionnels. Je recommande vivement !',
+                        service: 'Lahochi',
+                        date: new Date().toISOString(),
+                        approved: true
+                    }
+                ];
+
+                for (const testimonial of testimonials) {
+                    await addDoc(collection(db, "testimonials"), testimonial);
+                    log(`✓ Témoignage créé: ${testimonial.name}`, 'success');
+                }
+
+                // 6. Créer une réservation d'exemple avec workflow complet
+                log('📝 Création des collections du workflow...', 'info');
+                
+                const exampleDate = new Date();
+                exampleDate.setDate(exampleDate.getDate() + 3);
+                const exampleDateStr = exampleDate.toISOString().split('T')[0];
+                
+                // Booking
+                await addDoc(collection(db, "bookings"), {
+                    bookingNumber: 'RES2512INIT',
+                    quoteNumber: 'DEV2512INIT',
+                    serviceId: 'intuitif-adulte',
+                    serviceName: 'Séance Intuitive Adulte',
+                    name: 'Marie Exemple',
+                    firstname: 'Marie',
+                    lastname: 'Exemple',
+                    email: 'marie.exemple@email.com',
+                    phone: '06 12 34 56 78',
+                    date: exampleDateStr,
+                    time: '14:00',
+                    participants: 1,
+                    price: 60,
+                    discount: 0,
+                    promoDiscount: 0,
+                    total: 60,
+                    duration: 60,
+                    message: 'Ceci est une réservation d\'exemple pour tester le système.',
+                    status: 'pending',
+                    paymentStatus: 'unpaid',
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString()
+                });
+                log('✓ Collection "bookings" - réservation créée', 'success');
+
+                // Client profile
+                await setDoc(doc(db, 'clients', 'marie.exemple@email.com'), {
+                    email: 'marie.exemple@email.com',
+                    name: 'Marie Exemple',
+                    firstname: 'Marie',
+                    lastname: 'Exemple',
+                    phone: '06 12 34 56 78',
+                    totalBookings: 1,
+                    totalSpent: 0,
+                    loyaltyPoints: 0,
+                    firstBooking: new Date().toISOString(),
+                    lastBooking: new Date().toISOString(),
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString()
+                });
+                log('✓ Collection "clients" - profil créé', 'success');
+
+                // Quote
+                const validUntil = new Date();
+                validUntil.setDate(validUntil.getDate() + 30);
+                
+                await addDoc(collection(db, 'quotes'), {
+                    quoteNumber: 'DEV2512INIT',
+                    bookingNumber: 'RES2512INIT',
+                    clientEmail: 'marie.exemple@email.com',
+                    clientName: 'Marie Exemple',
+                    serviceName: 'Séance Intuitive Adulte',
+                    items: [
+                        {
+                            description: 'Séance Intuitive Adulte',
+                            quantity: 1,
+                            unitPrice: 60,
+                            total: 60
+                        }
+                    ],
+                    subtotal: 60,
+                    discount: 0,
+                    total: 60,
+                    validUntil: validUntil.toISOString(),
+                    status: 'pending',
+                    terms: 'Ce devis est valable 30 jours. Un acompte de 30% est demandé pour confirmer la réservation.',
+                    notes: 'Merci pour votre confiance. N\'hésitez pas à me contacter pour toute question.',
+                    createdAt: new Date().toISOString()
+                });
+                log('✓ Collection "quotes" - devis créé', 'success');
+
+                // Invoices - placeholder
+                await setDoc(doc(db, 'invoices', '_placeholder'), {
+                    description: 'Collection initialisée - ce document peut être supprimé',
+                    note: 'Les factures seront créées automatiquement lors de la confirmation des réservations',
+                    createdAt: new Date().toISOString()
+                });
+                log('✓ Collection "invoices" - placeholder créé', 'success');
+
+                // History
+                await addDoc(collection(db, 'history'), {
+                    type: 'booking_created',
+                    bookingNumber: 'RES2512INIT',
+                    clientEmail: 'marie.exemple@email.com',
+                    description: 'Réservation créée',
+                    details: {
+                        service: 'Séance Intuitive Adulte',
+                        date: exampleDateStr,
+                        time: '14:00',
+                        total: 60
+                    },
+                    timestamp: new Date().toISOString()
+                });
+                
+                await addDoc(collection(db, 'history'), {
+                    type: 'quote_generated',
+                    bookingNumber: 'RES2512INIT',
+                    quoteNumber: 'DEV2512INIT',
+                    clientEmail: 'marie.exemple@email.com',
+                    description: 'Devis généré',
+                    details: {
+                        total: 60,
+                        validUntil: validUntil.toISOString().split('T')[0]
+                    },
+                    timestamp: new Date().toISOString()
+                });
+                log('✓ Collection "history" - 2 entrées créées', 'success');
+
+                // Succès final
+                log('═══════════════════════════════════════', 'success');
+                log('✅ Initialisation terminée avec succès !', 'success');
+                log('═══════════════════════════════════════', 'success');
+                log('', 'info');
+                log('📊 Collections créées:', 'info');
+                log('  • services: 3 services', 'info');
+                log('  • settings: 1 configuration', 'info');
+                log('  • counters: 3 compteurs (RES, FACT, DEV)', 'info');
+                log('  • availability: 14 jours', 'info');
+                log('  • testimonials: 3 témoignages', 'info');
+                log('  • bookings: 1 exemple (RES2512INIT)', 'info');
+                log('  • clients: 1 profil exemple', 'info');
+                log('  • quotes: 1 devis exemple (DEV2512INIT)', 'info');
+                log('  • invoices: placeholder créé', 'info');
+                log('  • history: 2 entrées d\'historique', 'info');
+                log('', 'info');
+                log('🎯 Workflow complet initialisé:', 'info');
+                log('  ✓ Numérotation automatique des documents', 'info');
+                log('  ✓ Profils clients avec suivi', 'info');
+                log('  ✓ Génération de devis', 'info');
+                log('  ✓ Historique des activités', 'info');
+                log('', 'info');
+                log('🎉 Vous pouvez maintenant utiliser votre site !', 'success');
+                
+                updateStatus('✅ Initialisation réussie !', 'success');
+                btn.textContent = '✓ Terminé';
+
+            } catch (error) {
+                log('═══════════════════════════════════════', 'error');
+                log('❌ ERREUR: ' + error.message, 'error');
+                log('═══════════════════════════════════════', 'error');
+                console.error('Erreur complète:', error);
+                updateStatus('❌ Erreur lors de l\'initialisation', 'error');
+                btn.disabled = false;
+                btn.textContent = '🔄 Réessayer';
+            }
+        }
+
+        // Attacher l'événement au bouton
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('✅ DOM chargé');
+            
+            const btn = document.getElementById('initBtn');
+            logContainer = document.getElementById('logContainer');
+            statusDiv = document.getElementById('status');
+            
+            console.log('✅ Éléments trouvés:', { btn, logContainer, statusDiv });
+            
+            if (!btn) {
+                console.error('❌ Bouton non trouvé');
+                return;
+            }
+            
+            if (!logContainer) {
+                console.error('❌ Log container non trouvé');
+                return;
+            }
+            
+            // Log initial
+            logContainer.innerHTML = '<div class="log-entry log-info">Prêt à initialiser Firebase. Cliquez sur le bouton ci-dessus.</div>';
+            
+            // Attacher l'événement click
+            btn.addEventListener('click', () => {
+                console.log('🖱️ Clic sur le bouton');
+                initializeFirestore();
+            });
+            
+            console.log('✅ Event listener attaché');
+        });
+    </script>
+</body>
+</html>

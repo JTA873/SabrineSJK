@@ -1,142 +1,4 @@
-// ===================================
-// MOBILE MENU TOGGLE - Enhanced
-// ===================================
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
-const navLinks = document.querySelectorAll('.nav-menu a');
-
-if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
-        const isActive = navMenu.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-        menuToggle.setAttribute('aria-expanded', isActive);
-        
-        // Prevent body scroll when menu is open
-        document.body.style.overflow = isActive ? 'hidden' : '';
-    });
-}
-
-// Close menu when clicking on a link
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        // Don't close for member space link (it opens modal)
-        if (!link.classList.contains('btn-membre')) {
-            navMenu.classList.remove('active');
-            menuToggle.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-        }
-    });
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (navMenu.classList.contains('active') && 
-        !navMenu.contains(e.target) && 
-        !menuToggle.contains(e.target)) {
-        navMenu.classList.remove('active');
-        menuToggle.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-    }
-});
-
-// ===================================
-// STICKY HEADER ON SCROLL
-// ===================================
-const header = document.querySelector('.header');
-let lastScroll = 0;
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 100) {
-        header.style.padding = '0.5rem 0';
-        header.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.1)';
-    } else {
-        header.style.padding = '1rem 0';
-        header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
-    }
-    
-    lastScroll = currentScroll;
-});
-
-// ===================================
-// SMOOTH SCROLL FOR ANCHOR LINKS
-// ===================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        
-        if (target) {
-            const headerOffset = 80;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// ===================================
-// INTERSECTION OBSERVER FOR ANIMATIONS
-// ===================================
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe service cards, testimonials, etc.
-const animatedElements = document.querySelectorAll('.service-card, .testimonial-card, .about-content, .about-image');
-animatedElements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
-
-// ===================================
-// BOOKING FORM HANDLING
-// ===================================
-const bookingForm = document.getElementById('bookingForm');
-
-if (bookingForm) {
-    bookingForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = {
-            name: document.getElementById('booking-name').value,
-            phone: document.getElementById('booking-phone').value,
-            email: document.getElementById('booking-email').value,
-            date: document.getElementById('booking-date').value,
-            time: document.getElementById('booking-time').value,
-            service: document.getElementById('booking-service').value,
-            promo: document.getElementById('booking-promo').value,
-            message: document.getElementById('booking-message').value
-        };
-        
-        // Here you would typically send the data to a server
-        // For now, we'll just show a success message
-        showNotification('✅ Réservation confirmée ! Vous recevrez un email de confirmation sous peu.', 'success');
-        
-        // Reset form
-        bookingForm.reset();
-    });
-}
+// Toutes les initialisations sont dans le bloc DOMContentLoaded ci-dessous
 
 // ===================================
 // NOTIFICATION SYSTEM
@@ -286,26 +148,164 @@ if ('IntersectionObserver' in window) {
 }
 
 // ===================================
-// PREVENT FORM SPAM
-// ===================================
-let lastSubmitTime = 0;
-const SUBMIT_COOLDOWN = 3000; // 3 seconds
-
-contactForm.addEventListener('submit', (e) => {
-    const currentTime = Date.now();
-    if (currentTime - lastSubmitTime < SUBMIT_COOLDOWN) {
-        e.preventDefault();
-        showNotification('Veuillez attendre quelques secondes avant de soumettre à nouveau.', 'info');
-        return;
-    }
-    lastSubmitTime = currentTime;
-});
-
-// ===================================
-// GALLERY LIGHTBOX
+// INITIALIZATION - TOUT EN UN SEUL BLOC DOMContentLoaded
 // ===================================
 document.addEventListener('DOMContentLoaded', function() {
-    // Effet lightbox simple pour les images de galerie
+    console.log('🚀 Initialisation du site...');
+    
+    // ===================================
+    // MOBILE MENU TOGGLE
+    // ===================================
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-menu a');
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            const isActive = navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isActive);
+            document.body.style.overflow = isActive ? 'hidden' : '';
+        });
+    }
+
+    // Close menu when clicking on a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (!link.classList.contains('btn-membre')) {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navMenu.classList.contains('active') && 
+            !navMenu.contains(e.target) && 
+            !menuToggle.contains(e.target)) {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // ===================================
+    // STICKY HEADER ON SCROLL
+    // ===================================
+    const header = document.querySelector('.header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 100) {
+            header.style.padding = '0.5rem 0';
+            header.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.1)';
+        } else {
+            header.style.padding = '1rem 0';
+            header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+        }
+        
+        lastScroll = currentScroll;
+    });
+
+    // ===================================
+    // SMOOTH SCROLL FOR ANCHOR LINKS
+    // ===================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            
+            if (target) {
+                const headerOffset = 80;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // ===================================
+    // INTERSECTION OBSERVER FOR ANIMATIONS
+    // ===================================
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.service-card, .testimonial-card, .about-content, .about-image');
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+
+    // ===================================
+    // BOOKING FORM HANDLING
+    // ===================================
+    const bookingForm = document.getElementById('bookingForm');
+
+    if (bookingForm) {
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('booking-name').value,
+                phone: document.getElementById('booking-phone').value,
+                email: document.getElementById('booking-email').value,
+                date: document.getElementById('booking-date').value,
+                time: document.getElementById('booking-time').value,
+                service: document.getElementById('booking-service').value,
+                promo: document.getElementById('booking-promo').value,
+                message: document.getElementById('booking-message').value
+            };
+            
+            showNotification('✅ Réservation confirmée ! Vous recevrez un email de confirmation sous peu.', 'success');
+            bookingForm.reset();
+        });
+    }
+    
+    // ===================================
+    // PREVENT FORM SPAM
+    // ===================================
+    let lastSubmitTime = 0;
+    const SUBMIT_COOLDOWN = 3000;
+    
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            const currentTime = Date.now();
+            if (currentTime - lastSubmitTime < SUBMIT_COOLDOWN) {
+                e.preventDefault();
+                showNotification('Veuillez attendre quelques secondes avant de soumettre à nouveau.', 'info');
+                return;
+            }
+            lastSubmitTime = currentTime;
+        });
+    }
+    
+    // ===================================
+    // GALLERY LIGHTBOX
+    // ===================================
     document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function() {
             const img = this.querySelector('img');
@@ -329,15 +329,17 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-});
-
-// ===================================
-// CALENDAR INITIALIZATION
-// ===================================
-document.addEventListener('DOMContentLoaded', function() {
+    
+    // ===================================
+    // CALENDAR INITIALIZATION
+    // ===================================
+    console.log('📅 Initialisation du calendrier...');
     const calendarEl = document.getElementById('calendar');
+    console.log('Élément calendrier trouvé:', calendarEl ? 'OUI' : 'NON');
     
     if (calendarEl) {
+        console.log('FullCalendar disponible:', typeof FullCalendar !== 'undefined' ? 'OUI' : 'NON');
+        
         const calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             locale: 'fr',
@@ -352,7 +354,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 week: 'Semaine'
             },
             events: [
-                // Example available slots - you would fetch these from your backend
                 {
                     title: 'Disponible',
                     start: new Date(Date.now() + 86400000).toISOString().split('T')[0] + 'T09:00:00',
@@ -381,9 +382,308 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
+        console.log('Rendu du calendrier...');
         calendar.render();
+        console.log('✅ Calendrier rendu avec succès');
+    } else {
+        console.error('❌ Élément #calendar non trouvé dans le DOM');
     }
+    
+    // ===================================
+    // BOOKING BUTTONS
+    // ===================================
+    console.log('🎯 Recherche des boutons de réservation...');
+    const bookingButtons = document.querySelectorAll('.btn-service-book');
+    console.log('Nombre de boutons trouvés:', bookingButtons.length);
+    
+    bookingButtons.forEach((button, index) => {
+        console.log('Bouton ' + index + ':', button.dataset.name);
+        
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const serviceId = this.dataset.service;
+            const serviceName = this.dataset.name;
+            const price = parseInt(this.dataset.price);
+            const duration = parseInt(this.dataset.duration);
+            
+            console.log('🎫 Clic sur réservation:', serviceId, serviceName, price, duration);
+            openBookingDetails(serviceId, serviceName, price, duration);
+        });
+    });
+    
+    console.log('✅ Initialisation terminée');
 });
+
+// ===================================
+// SERVICE DETAILS DATA
+// ===================================
+const servicesData = {
+    'intuitif-adulte': {
+        name: 'Séance Intuitive Guidée - Adultes',
+        icon: 'fa-user',
+        price: 60,
+        duration: 60,
+        description: 'Séance complète pour harmoniser le corps, l\'esprit et les émotions.',
+        details: [
+            'Apaisement profond et nettoyage énergétique',
+            'Libération émotionnelle et recentrage',
+            'Amélioration de la circulation énergétique',
+            'Utilisation intuitive d\'outils : magnétisme, tambour, plume, pierres, voix...'
+        ],
+        options: [
+            { label: 'Présentiel', price: 60 },
+            { label: 'Distanciel', price: 50 }
+        ]
+    },
+    'intuitif-enfant': {
+        name: 'Séance Intuitive Guidée - Enfants',
+        icon: 'fa-child',
+        price: 40,
+        duration: 45,
+        description: 'Séance adaptée aux enfants de moins de 12 ans.',
+        details: [
+            'Durée adaptée à la sensibilité de l\'enfant',
+            'Approche douce et bienveillante',
+            'Libération des tensions émotionnelles',
+            'Rééquilibrage énergétique en douceur'
+        ],
+        options: [
+            { label: 'Présentiel', price: 40 },
+            { label: 'Distanciel', price: 30 }
+        ]
+    },
+    'intuitif-animal': {
+        name: 'Séance Intuitive Guidée - Animaux',
+        icon: 'fa-paw',
+        price: 40,
+        duration: 45,
+        description: 'Soin énergétique adapté à vos compagnons animaux.',
+        details: [
+            'Durée adaptée selon l\'animal',
+            'Apaisement et détente',
+            'Soulagement des blocages énergétiques',
+            'Accompagnement dans les périodes difficiles'
+        ],
+        options: [
+            { label: 'Présentiel', price: 40 },
+            { label: 'Distanciel', price: 30 }
+        ]
+    },
+    'reiki-lahochi': {
+        name: 'Reiki ou Lahochi',
+        icon: 'fa-spa',
+        price: 60,
+        duration: 60,
+        description: 'Techniques de guérison énergétique japonaise et hawaïenne.',
+        details: [
+            'Profonde détente corporelle et mentale',
+            'Rééquilibrage énergétique complet',
+            'Libération émotionnelle en douceur',
+            'Amélioration du sommeil et de la clarté mentale',
+            'Reiki : 1h à 1h15',
+            'Lahochi : environ 1h'
+        ]
+    },
+    'forfait-reiki': {
+        name: 'Forfait 4 Séances Reiki/Lahochi',
+        icon: 'fa-gift',
+        price: 210,
+        duration: 240,
+        description: 'Forfait avantageux pour un suivi régulier.',
+        details: [
+            '4 séances de Reiki ou Lahochi',
+            'Économie de 30€ par rapport au tarif unitaire',
+            'Paiement en 3 ou 4 fois possible',
+            'Suivi personnalisé sur plusieurs semaines'
+        ],
+        isPackage: true
+    },
+    'sonore': {
+        name: 'Séance Sonore Énergétique',
+        icon: 'fa-music',
+        price: 60,
+        duration: 60,
+        description: 'Travail vibratoire profond sur les 7 chakras.',
+        details: [
+            'Libération des tensions profondes',
+            'Détente du système nerveux',
+            'Apaisement du mental et des ruminations',
+            'Régénération intérieure par les vibrations',
+            'Idéal pour stress, dispersion, surcharge émotionnelle'
+        ]
+    },
+    'magnetisme-cranien': {
+        name: 'Magnétisme Crânien + Harmonisation Chakras',
+        icon: 'fa-brain',
+        price: 60,
+        duration: 60,
+        description: 'Libération de la tête et harmonisation énergétique.',
+        details: [
+            'Libère les pensées lourdes et tensions nerveuses',
+            'Apaise le mental et détend profondément',
+            'Détend le visage et le cuir chevelu',
+            'Améliore la circulation énergétique',
+            'Excellent pour migraines, anxiété, troubles du sommeil'
+        ]
+    },
+    'micro-massage': {
+        name: 'Micro-massage (tête • visage • ventre • dos)',
+        icon: 'fa-hand-holding-heart',
+        price: 60,
+        duration: 60,
+        description: 'Travail doux qui libère les mémoires émotionnelles du corps.',
+        details: [
+            'Ventre : libération de l\'émotionnel',
+            'Dos : libération des charges',
+            'Visage et tête : apaisement de l\'esprit',
+            'Moment sonore possible en fin de séance',
+            'Approche très douce et respectueuse du corps'
+        ]
+    },
+    'accompagnement': {
+        name: 'Accompagnement Holistique Profond',
+        icon: 'fa-seedling',
+        price: 60,
+        duration: 60,
+        description: 'Pour comprendre, libérer et transformer.',
+        details: [
+            'Blessures émotionnelles et traumatismes',
+            'Anxiété et estime de soi',
+            'Mémoires transgénérationnelles',
+            'Deuil et séparation',
+            'Accompagnement en profondeur avec écoute'
+        ]
+    },
+    'forfait-accompagnement': {
+        name: 'Forfait 3 Séances d\'Accompagnement',
+        icon: 'fa-infinity',
+        price: 160,
+        duration: 180,
+        description: 'Forfait pour un travail en profondeur.',
+        details: [
+            '3 séances d\'accompagnement holistique',
+            'Économie de 20€ par rapport au tarif unitaire',
+            'Suivi personnalisé et évolution progressive',
+            'Temps d\'intégration entre les séances'
+        ],
+        isPackage: true
+    },
+    'verrue': {
+        name: 'Soin Verrue',
+        icon: 'fa-hand-sparkles',
+        price: 60,
+        duration: 60,
+        description: 'Protocole énergétique en 3 phases.',
+        details: [
+            'Séance principale : 30 min (chakra racine, chakra sacré, magnétisme direct)',
+            'Deux séances de renfort : 15 min chacune',
+            'Travail énergétique ciblé',
+            'Forfait complet incluant les 3 séances'
+        ]
+    },
+    'operation': {
+        name: 'Accompagnement Opération',
+        icon: 'fa-hospital',
+        price: 70,
+        duration: 90,
+        description: 'Soutien énergétique avant, pendant et après une intervention.',
+        details: [
+            '3 séances : avant • pendant • après l\'opération',
+            'Durées : 45 min + 20 min + 25 min (total 1h30)',
+            'Prépare le corps et apaise le mental',
+            'Soutient la récupération post-opératoire',
+            'Apporte ancrage, calme et régénération'
+        ]
+    }
+};
+
+// ===================================
+// SERVICE DETAILS MODAL
+// ===================================
+function openServiceDetails(serviceId) {
+    const service = servicesData[serviceId];
+    if (!service) return;
+    
+    // Créer le modal
+    const modalHTML = `
+        <div id="serviceDetailsModal" class="modal active">
+            <div class="modal-content modal-large">
+                <span class="modal-close" onclick="closeServiceDetails()">&times;</span>
+                <div class="modal-header">
+                    <i class="fas ${service.icon}"></i>
+                    <h2>${service.name}</h2>
+                </div>
+                
+                <div class="service-details-content">
+                    <p class="service-description">${service.description}</p>
+                    
+                    <div class="service-info-grid">
+                        <div class="info-box">
+                            <i class="fas fa-euro-sign"></i>
+                            <div>
+                                <strong>Tarif</strong>
+                                <p>${service.price}€</p>
+                            </div>
+                        </div>
+                        <div class="info-box">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Durée</strong>
+                                <p>${service.duration} min</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-benefits">
+                        <h3><i class="fas fa-check-circle"></i> Ce que vous apporte cette séance :</h3>
+                        <ul>
+                            ${service.details.map(detail => `<li>${detail}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    ${service.options ? `
+                        <div class="service-options">
+                            <h3><i class="fas fa-list"></i> Options disponibles :</h3>
+                            <div class="options-grid">
+                                ${service.options.map(opt => `
+                                    <div class="option-card">
+                                        <strong>${opt.label}</strong>
+                                        <span class="option-price">${opt.price}€</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-primary btn-large" onclick="openBookingFromService('${serviceId}', '${service.name}', ${service.price}, ${service.duration})">
+                            <i class="fas fa-calendar-check"></i> Réserver cette séance
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Ajouter le modal au body
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    document.body.style.overflow = 'hidden';
+}
+
+function closeServiceDetails() {
+    const modal = document.getElementById('serviceDetailsModal');
+    if (modal) {
+        modal.remove();
+        document.body.style.overflow = '';
+    }
+}
+
+function openBookingFromService(serviceId, serviceName, price, duration) {
+    closeServiceDetails();
+    openBookingDetails(serviceId, serviceName, price, duration);
+}
 
 // ===================================
 // MEMBER SPACE MODAL
@@ -604,24 +904,7 @@ function openBookingDetails(serviceId, serviceName, price, duration) {
     updatePriceCalculator();
 }
 
-// Event listeners pour les boutons de service avec data attributes
-document.addEventListener('DOMContentLoaded', function() {
-    // Attacher les événements aux boutons de réservation
-    document.querySelectorAll('.btn-service-book').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const serviceId = this.dataset.service;
-            const serviceName = this.dataset.name;
-            const price = parseInt(this.dataset.price);
-            const duration = parseInt(this.dataset.duration);
-            
-            console.log('Ouverture réservation:', serviceId, serviceName, price, duration);
-            openBookingDetails(serviceId, serviceName, price, duration);
-        });
-    });
-});
+// Event listeners pour les boutons de service - voir bloc DOMContentLoaded unifié plus haut
 
 function closeBookingDetails() {
     document.getElementById('bookingDetailsModal').classList.remove('active');
@@ -774,19 +1057,22 @@ function generateSummary() {
 }
 
 // Gestion de la soumission du formulaire détaillé
-document.getElementById('detailedBookingForm')?.addEventListener('submit', (e) => {
+document.getElementById('detailedBookingForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // Générer l'email de devis
-    const emailData = {
-        service: currentBooking.serviceName,
+    // Récupérer les données du formulaire
+    const bookingData = {
+        serviceId: currentBooking.serviceId,
+        serviceName: currentBooking.serviceName,
         participants: currentBooking.participants,
         price: currentBooking.price,
         discount: currentBooking.discount,
         promoDiscount: currentBooking.promoDiscount,
         total: currentBooking.total,
+        duration: currentBooking.duration,
         firstname: document.getElementById('detail-firstname').value,
         lastname: document.getElementById('detail-lastname').value,
+        name: document.getElementById('detail-firstname').value + ' ' + document.getElementById('detail-lastname').value,
         email: document.getElementById('detail-email').value,
         phone: document.getElementById('detail-phone').value,
         date: document.getElementById('detail-date').value,
@@ -794,42 +1080,108 @@ document.getElementById('detailedBookingForm')?.addEventListener('submit', (e) =
         message: document.getElementById('detail-message').value
     };
     
-    // Ici vous enverriez les données à votre serveur
-    console.log('Réservation confirmée:', emailData);
+    console.log('📝 Réservation en cours...', bookingData);
     
-    // Créer un email avec les informations
-    const subject = `Réservation - ${emailData.service}`;
-    const body = `
-Nouvelle réservation:
-    
-Service: ${emailData.service}
-Nombre de personnes: ${emailData.participants}
-Date: ${emailData.date} à ${emailData.time}
+    // Utiliser le workflow complet
+    if (window.workflowManager) {
+        const result = await window.workflowManager.createFullBooking(bookingData);
+        
+        if (result.success) {
+            console.log('✅ Réservation complète créée:', result);
+            
+            // Créer l'email de confirmation avec tous les détails
+            const subject = `Réservation ${result.bookingNumber} - ${bookingData.serviceName}`;
+            const body = `
+🎉 Nouvelle réservation créée avec succès !
 
-Client:
-${emailData.firstname} ${emailData.lastname}
-Email: ${emailData.email}
-Téléphone: ${emailData.phone}
+📋 RÉSERVATION: ${result.bookingNumber}
+📄 DEVIS: ${result.quoteNumber}
+${result.isNewClient ? '🆕 NOUVEAU CLIENT' : '👤 CLIENT FIDÈLE'}
 
-Devis:
-Prix unitaire: ${emailData.price}€
-Participants: ${emailData.participants}
-Remise groupe: -${emailData.discount.toFixed(2)}€
-Remise promo: -${emailData.promoDiscount.toFixed(2)}€
-TOTAL: ${emailData.total.toFixed(2)}€
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+📅 DÉTAILS DE LA SÉANCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Message: ${emailData.message}
-    `;
-    
-    // Ouvrir le client email
-    window.location.href = `mailto:sabrine.sjk@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    showNotification('✅ Réservation confirmée ! Un email de devis vous a été envoyé.', 'success');
-    
-    // Fermer le modal après 2 secondes
-    setTimeout(() => {
-        closeBookingDetails();
-    }, 2000);
+Service: ${bookingData.serviceName}
+Date: ${bookingData.date} à ${bookingData.time}
+Durée: ${bookingData.duration} minutes
+Participants: ${bookingData.participants}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 INFORMATIONS CLIENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Nom: ${bookingData.name}
+Email: ${bookingData.email}
+Téléphone: ${bookingData.phone}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+💰 TARIFICATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Prix unitaire: ${bookingData.price}€
+Participants: ${bookingData.participants}
+Sous-total: ${(bookingData.price * bookingData.participants).toFixed(2)}€
+
+Remise groupe: -${bookingData.discount.toFixed(2)}€
+Remise promo: -${bookingData.promoDiscount.toFixed(2)}€
+
+═══════════════════════════
+TOTAL: ${bookingData.total.toFixed(2)}€
+═══════════════════════════
+
+💬 Message du client:
+${bookingData.message || 'Aucun message'}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+📄 DOCUMENTS GÉNÉRÉS
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Fiche de réservation
+✓ Devis (${result.quoteNumber})
+✓ Profil client mis à jour
+
+🔗 LIENS RAPIDES
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Admin: admin.html
+Profil client: profile.html?email=${encodeURIComponent(bookingData.email)}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Cette réservation a été enregistrée dans le système avec succès.
+Un email de confirmation a été envoyé au client.
+            `;
+            
+            // Ouvrir le client email
+            window.location.href = `mailto:sabrine.sjk@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            showNotification('✅ Réservation enregistrée avec succès ! Un email de confirmation va être envoyé.', 'success');
+            
+            // Fermer le modal après 2 secondes
+            setTimeout(() => {
+                closeBookingDetails();
+            }, 2000);
+        } else {
+            console.error('❌ Erreur Firebase:', result.error);
+            showNotification('⚠️ Erreur lors de l\'enregistrement. Veuillez réessayer.', 'error');
+        }
+    } else {
+        // Fallback si Firebase n'est pas chargé
+        console.warn('⚠️ Firebase non disponible, utilisation du fallback email');
+        const subject = `Réservation - ${bookingData.serviceName}`;
+        const body = `
+Service: ${bookingData.serviceName}
+Date: ${bookingData.date} à ${bookingData.time}
+Client: ${bookingData.name}
+Email: ${bookingData.email}
+Téléphone: ${bookingData.phone}
+Total: ${bookingData.total.toFixed(2)}€
+        `;
+        window.location.href = `mailto:sabrine.sjk@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        showNotification('✅ Réservation envoyée par email.', 'success');
+        setTimeout(() => closeBookingDetails(), 2000);
+    }
 });
 
 // Close modal when clicking outside
@@ -850,6 +1202,184 @@ window.onclick = function(event) {
 // LOG PAGE LOAD
 // ===================================
 console.log('%c✨ Site web de Sabrine SJK - Thérapeute Énergétique ✨', 
-    'font-size: 16px; color: #8B7355; font-weight: bold;');
+    'font-size: 20px; color: #8B7355; font-weight: bold;');
 console.log('%cSite développé avec soin pour accompagner votre bien-être', 
     'font-size: 12px; color: #4A4A4A;');
+
+// ===================================
+// MEMBER DASHBOARD FUNCTIONS
+// ===================================
+
+// Simulation de données utilisateur (à remplacer par une vraie base de données)
+let isLoggedIn = false;
+const currentUser = {
+    firstname: 'Marie',
+    lastname: 'Dupont',
+    email: 'marie.dupont@email.com',
+    phone: '06 12 34 56 78',
+    memberSince: 'janvier 2025'
+};
+
+// Gestion de la connexion
+function handleLogin(event) {
+    event.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    
+    // Simulation de connexion (remplacer par vraie authentification)
+    if (email && password) {
+        isLoggedIn = true;
+        showDashboard();
+    } else {
+        alert('Veuillez remplir tous les champs');
+    }
+}
+
+// Gestion de l'inscription
+function handleRegister(event) {
+    event.preventDefault();
+    const password = document.getElementById('reg-password').value;
+    const confirm = document.getElementById('reg-confirm').value;
+    
+    if (password !== confirm) {
+        alert('Les mots de passe ne correspondent pas');
+        return;
+    }
+    
+    // Simulation d'inscription (remplacer par vraie API)
+    alert('Inscription réussie ! Vous allez être connecté.');
+    isLoggedIn = true;
+    showDashboard();
+}
+
+// Afficher le dashboard
+function showDashboard() {
+    document.getElementById('authScreen').style.display = 'none';
+    document.getElementById('memberDashboard').style.display = 'block';
+    document.getElementById('userName').textContent = currentUser.firstname;
+    document.getElementById('memberSince').textContent = currentUser.memberSince;
+}
+
+// Déconnexion
+function logout() {
+    isLoggedIn = false;
+    document.getElementById('authScreen').style.display = 'block';
+    document.getElementById('memberDashboard').style.display = 'none';
+    document.getElementById('loginForm').reset();
+}
+
+// Navigation entre les sections du dashboard
+function showDashSection(sectionName) {
+    // Cacher toutes les sections
+    const sections = document.querySelectorAll('.dash-section');
+    sections.forEach(section => section.classList.remove('active'));
+    
+    // Retirer l'état actif de tous les boutons
+    const buttons = document.querySelectorAll('.dash-tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    // Afficher la section sélectionnée
+    document.getElementById(sectionName + '-section').classList.add('active');
+    
+    // Activer le bouton correspondant
+    event.target.classList.add('active');
+}
+
+// Gestion des rendez-vous
+function rescheduleAppointment(id) {
+    alert('Fonction de modification du rendez-vous ' + id + ' - À implémenter avec le backend');
+    // Ici, ouvrir un modal de modification ou rediriger vers le formulaire de réservation
+}
+
+function cancelAppointment(id) {
+    if (confirm('Êtes-vous sûr de vouloir annuler ce rendez-vous ?')) {
+        alert('Rendez-vous ' + id + ' annulé - À implémenter avec le backend');
+        // Ici, faire un appel API pour annuler le rendez-vous
+    }
+}
+
+function bookAgain(serviceType) {
+    closeMemberSpace();
+    // Scroller vers la section réservation
+    document.querySelector('#reservation').scrollIntoView({ behavior: 'smooth' });
+    // Pré-sélectionner le service si possible
+}
+
+function newAppointment() {
+    closeMemberSpace();
+    document.querySelector('#reservation').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Gestion du profil
+function updateProfile(event) {
+    event.preventDefault();
+    alert('Profil mis à jour avec succès !');
+    // Ici, faire un appel API pour sauvegarder les modifications
+}
+
+// Gestion des paiements
+function payNow(invoiceId) {
+    alert('Redirection vers le système de paiement pour la facture ' + invoiceId);
+    // Intégrer Stripe, PayPal ou autre système de paiement
+}
+
+function downloadInvoice(invoiceId) {
+    alert('Téléchargement de la facture ' + invoiceId);
+    // Générer et télécharger le PDF de la facture
+}
+
+// Journal d'évolution
+function addJournalEntry() {
+    const entry = prompt('Notez vos ressentis après votre dernière séance :');
+    if (entry) {
+        alert('Entrée ajoutée avec succès !');
+        // Sauvegarder l'entrée dans la base de données
+    }
+}
+
+// ===================================
+// QUICK BOOKING FORM
+// ===================================
+function handleQuickBooking(event) {
+    event.preventDefault();
+    
+    const formData = {
+        name: document.getElementById('booking-name').value,
+        phone: document.getElementById('booking-phone').value,
+        email: document.getElementById('booking-email').value,
+        date: document.getElementById('booking-date').value,
+        time: document.getElementById('booking-time').value,
+        service: document.getElementById('booking-service').options[document.getElementById('booking-service').selectedIndex].text,
+        location: document.getElementById('booking-location').options[document.getElementById('booking-location').selectedIndex].text,
+        message: document.getElementById('booking-message').value
+    };
+    
+    // Créer le contenu de l'email
+    const subject = `Demande de rendez-vous - ${formData.name}`;
+    const body = `
+Nouvelle demande de rendez-vous
+
+Nom : ${formData.name}
+Téléphone : ${formData.phone}
+Email : ${formData.email}
+
+Date souhaitée : ${formData.date}
+Heure : ${formData.time}
+Type de soin : ${formData.service}
+Lieu : ${formData.location}
+
+Message : ${formData.message || 'Aucun message'}
+
+---
+Cette demande a été envoyée depuis le site web.
+    `;
+    
+    // Ouvrir le client email
+    window.location.href = `mailto:sabrine.sjk@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Afficher une confirmation
+    alert('Votre demande de réservation va être envoyée par email. Sabrine vous contactera rapidement pour confirmer votre rendez-vous.');
+    
+    // Réinitialiser le formulaire
+    document.getElementById('bookingForm').reset();
+}

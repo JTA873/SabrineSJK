@@ -23,8 +23,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css' rel='stylesheet' />
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/locales/fr.js'></script>
 </head>
 <body>
     <!-- Bandeau Promo -->
@@ -71,19 +69,59 @@
                 <span class="floating-icon">⭐</span>
             </div>
             <h2 class="hero-title">Sabrine SJK</h2>
-            <p class="hero-subtitle">Thérapeute Énergétique • Alchimiste de l'Âme</p>
+            <p class="hero-subtitle">Thérapeute Énergétique • Séances Intuitives Guidées</p>
             <div class="hero-badges">
-                <span class="badge"><i class="fas fa-hands"></i> Reiki</span>
-                <span class="badge"><i class="fas fa-magnet"></i> Magnétisme</span>
-                <span class="badge"><i class="fas fa-star"></i> Lahochi</span>
+                <span class="badge"><i class="fas fa-hands"></i> Reiki & Lahochi</span>
+                <span class="badge"><i class="fas fa-heart"></i> Magnétisme</span>
+                <span class="badge"><i class="fas fa-spa"></i> Soins Holistiques</span>
             </div>
             <div class="hero-cta">
-                <a href="#reservation" class="btn btn-primary btn-large"><i class="fas fa-calendar-check"></i> Réserver en ligne</a>
+                <a href="#reservation" class="btn btn-primary btn-large"><i class="fas fa-calendar-check"></i> Prendre Rendez-vous</a>
                 <a href="tel:0786996950" class="btn btn-secondary btn-large"><i class="fas fa-phone"></i> 07 86 99 69 50</a>
             </div>
         </div>
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Ma Façon de Travailler Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">✨ Mon Approche</span>
+                <h2>Ma Façon de Travailler</h2>
+                <p>Simplement, intuitivement, dans le respect total de votre être</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="lead">Quand quelqu'un vient vers moi — pour une douleur, une émotion lourde, une fatigue, un blocage, un symptôme de peau ou un besoin d'apaisement — <strong>je m'adapte toujours à la personne</strong>.</p>
+                    
+                    <p>Il m'arrive d'utiliser un protocole précis, mais ma vraie façon de travailler reste <strong>l'intuitif</strong> : je me laisse guider par mes ressentis, mon souffle, mes alliés, mes outils, et l'énergie du moment.</p>
+                    
+                    <p>Dès le premier échange, la séance commence déjà à se poser. Puis pendant le rendez-vous, tout se déroule naturellement, <strong>avec l'accord de la personne, dans le respect total de son libre arbitre</strong>.</p>
+                    
+                    <div class="highlight-box">
+                        <h3><i class="fas fa-star"></i> Séances Intuitives Guidées</h3>
+                        <p>Je me connecte, j'écoute, et j'utilise ce qui se présente :</p>
+                        <div class="tools-list">
+                            <span class="tool-badge"><i class="fas fa-hands"></i> Magnétisme</span>
+                            <span class="tool-badge"><i class="fas fa-wind"></i> Souffle</span>
+                            <span class="tool-badge"><i class="fas fa-drum"></i> Tambour</span>
+                            <span class="tool-badge"><i class="fas fa-feather"></i> Plume</span>
+                            <span class="tool-badge"><i class="fas fa-gem"></i> Pierres</span>
+                            <span class="tool-badge"><i class="fas fa-music"></i> Voix</span>
+                            <span class="tool-badge"><i class="fas fa-star"></i> Guides</span>
+                        </div>
+                    </div>
+                    
+                    <p>Si la personne vient pour un soin précis (Reiki, Lahochi, soin sonore, micro-massage…), <strong>je respecte totalement sa demande</strong>.</p>
+                    
+                    <p class="emphasis"><i class="fas fa-globe"></i> Toutes mes séances peuvent se faire en <strong>présentiel ou en distanciel</strong> (sauf celles nécessitant le contact physique).</p>
+                    
+                    <p class="disclaimer"><i class="fas fa-info-circle"></i> J'agis en complément, dans le respect du corps, de l'esprit et du chemin de chacun.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -93,94 +131,197 @@
     <section id="services" class="services">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">✨ Voyages Énergétiques</span>
-                <h2>Soins & Tarifs</h2>
-                <p>Chaque soin est une invitation à reconnecter avec votre essence divine</p>
+                <span class="section-label">✨ Soins & Accompagnements</span>
+                <h2>Mes Services & Tarifs</h2>
+                <p>Cliquez sur un service pour voir les détails et réserver votre séance</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-hands"></i>
+            
+            <!-- Séances Intuitives Guidées -->
+            <div class="service-category">
+                <h3 class="category-title"><i class="fas fa-star"></i> Séances Intuitives Guidées</h3>
+                <p class="category-desc">Pour harmoniser le corps, l'esprit et les émotions</p>
+                
+                <div class="services-grid">
+                    <div class="service-card clickable" onclick="openServiceDetails('intuitif-adulte')">
+                        <div class="service-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Adultes</h4>
+                        <div class="price-tag">60€</div>
+                        <p class="service-duration"><i class="fas fa-clock"></i> env. 1h</p>
+                        <div class="service-footer">
+                            <span class="service-action">Voir détails & réserver <i class="fas fa-arrow-right"></i></span>
+                        </div>
                     </div>
-                    <h3>Reiki Usui</h3>
-                    <p>Technique ancestrale japonaise. L'énergie vitale universelle rééquilibre corps, esprit et âme.</p>
-                    <ul class="service-benefits">
-                        <li>Libération des blocages énergétiques</li>
-                        <li>Harmonisation corps-esprit</li>
-                        <li>Reconnexion à votre essence</li>
-                    </ul>
-                    <div class="price">60€ • 1h</div>
-                    <button type="button" class="btn btn-primary btn-service-book" data-service="reiki" data-name="Reiki Usui" data-price="60" data-duration="60"><i class="fas fa-calendar-plus"></i> Réserver ce soin</button>
+                    
+                    <div class="service-card clickable" onclick="openServiceDetails('intuitif-enfant')">
+                        <div class="service-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h4>Enfants (-12 ans)</h4>
+                        <div class="price-tag">40€</div>
+                        <p class="service-duration"><i class="fas fa-clock"></i> 45 min</p>
+                        <div class="service-footer">
+                            <span class="service-action">Voir détails & réserver <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card clickable" onclick="openServiceDetails('intuitif-animal')">
+                        <div class="service-icon">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <h4>Animaux</h4>
+                        <div class="price-tag">40€</div>
+                        <p class="service-duration"><i class="fas fa-clock"></i> Durée adaptée</p>
+                        <div class="service-footer">
+                            <span class="service-action">Voir détails & réserver <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-star"></i>
+            </div>
+            
+            <!-- Reiki & Lahochi -->
+            <div class="service-category">
+                <h3 class="category-title"><i class="fas fa-hands"></i> Reiki & Lahochi</h3>
+                <p class="category-desc">Profonde détente et rééquilibrage énergétique</p>
+                
+                <div class="services-grid">
+                    <div class="service-card clickable" onclick="openServiceDetails('reiki-lahochi')">
+                        <div class="service-icon">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <h4>Séance Reiki ou Lahochi</h4>
+                        <div class="price-tag">60€</div>
+                        <p class="service-duration"><i class="fas fa-clock"></i> 1h à 1h15</p>
+                        <div class="service-footer">
+                            <span class="service-action">Voir détails & réserver <i class="fas fa-arrow-right"></i></span>
+                        </div>
                     </div>
-                    <h3>Lahochi</h3>
-                    <p>Haute fréquence vibratoire. Imposition des mains pour une transformation profonde.</p>
-                    <ul class="service-benefits">
-                        <li>Transformation énergétique</li>
-                        <li>Élévation vibratoire</li>
-                        <li>Guérison profonde</li>
-                    </ul>
-                    <div class="price">60€ • 1h</div>
-                    <button type="button" class="btn btn-primary btn-service-book" data-service="lahochi" data-name="Lahochi" data-price="60" data-duration="60"><i class="fas fa-calendar-plus"></i> Réserver ce soin</button>
+                    
+                    <div class="service-card clickable package" onclick="openServiceDetails('forfait-reiki')">
+                        <div class="badge-promo">FORFAIT</div>
+                        <div class="service-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h4>Forfait 4 Séances</h4>
+                        <div class="price-tag">
+                            <span class="price-old">240€</span>
+                            <span class="price-new">210€</span>
+                        </div>
+                        <p class="service-note">Paiement en plusieurs fois possible</p>
+                        <div class="service-footer">
+                            <span class="service-action">Voir détails & réserver <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-magnet"></i>
+            </div>
+            
+            <!-- Soins Spécialisés -->
+            <div class="service-category">
+                <h3 class="category-title"><i class="fas fa-leaf"></i> Soins Spécialisés</h3>
+                
+                <div class="services-grid">
+                    <div class="service-card clickable" onclick="openServiceDetails('sonore')">
+                        <div class="service-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h4>Séance Sonore Énergétique</h4>
+                        <div class="price-tag">60€</div>
+                        <p class="service-duration"><i class="fas fa-clock"></i> 1h</p>
+                        <div class="service-footer">
+                            <span class="service-action">Voir détails & réserver <i class="fas fa-arrow-right"></i></span>
+                        </div>
                     </div>
-                    <h3>Magnétisme</h3>
-                    <p>Transmission d'énergie pure. Soulage tensions physiques et blocages émotionnels.</p>
-                    <ul class="service-benefits">
-                        <li>Soulagement des douleurs</li>
-                        <li>Rééquilibrage énergétique</li>
-                        <li>Libération émotionnelle</li>
-                    </ul>
-                    <div class="price">60€ • 1h</div>
-                    <button type="button" class="btn btn-primary btn-service-book" data-service="magnetisme" data-name="Magnétisme" data-price="60" data-duration="60"><i class="fas fa-calendar-plus"></i> Réserver ce soin</button>
+                    
+                    <div class="service-card clickable" onclick="openServiceDetails('magnetisme-cranien')">
+                        <div class="service-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>Magnétisme Crânien</h4>
+                        <div class="price-tag">60€</div>
+                        <p class="service-duration"><i class="fas fa-clock"></i> 1h</p>
+                        <div class="service-footer">
+                            <span class="service-action">Voir détails & réserver <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card clickable" onclick="openServiceDetails('micro-massage')">
+                        <div class="service-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h4>Micro-massage</h4>
+                        <div class="price-tag">60€</div>
+                        <p class="service-duration"><i class="fas fa-clock"></i> 1h</p>
+                        <div class="service-footer">
+                            <span class="service-action">Voir détails & réserver <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-rainbow"></i>
+            </div>
+            
+            <!-- Accompagnements Profonds -->
+            <div class="service-category">
+                <h3 class="category-title"><i class="fas fa-heart"></i> Accompagnements Holistiques</h3>
+                <p class="category-desc">Blessures émotionnelles, anxiété, estime de soi...</p>
+                
+                <div class="services-grid">
+                    <div class="service-card clickable" onclick="openServiceDetails('accompagnement')">
+                        <div class="service-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h4>Séance Seule</h4>
+                        <div class="price-tag">60€</div>
+                        <p class="service-duration"><i class="fas fa-clock"></i> 1h</p>
+                        <div class="service-footer">
+                            <span class="service-action">Voir détails & réserver <i class="fas fa-arrow-right"></i></span>
+                        </div>
                     </div>
-                    <h3>Harmonisation des Chakras</h3>
-                    <p>Rééquilibrage complet de vos 7 centres énergétiques. Retrouvez votre alignement.</p>
-                    <ul class="service-benefits">
-                        <li>Équilibre des 7 chakras</li>
-                        <li>Circulation énergétique fluide</li>
-                        <li>Alignement corps-esprit-âme</li>
-                    </ul>
-                    <div class="price">70€ • 1h15</div>
-                    <button type="button" class="btn btn-primary btn-service-book" data-service="chakras" data-name="Harmonisation des Chakras" data-price="70" data-duration="75"><i class="fas fa-calendar-plus"></i> Réserver ce soin</button>
+                    
+                    <div class="service-card clickable package" onclick="openServiceDetails('forfait-accompagnement')">
+                        <div class="badge-promo">FORFAIT</div>
+                        <div class="service-icon">
+                            <i class="fas fa-infinity"></i>
+                        </div>
+                        <h4>Forfait 3 Séances</h4>
+                        <div class="price-tag">
+                            <span class="price-old">180€</span>
+                            <span class="price-new">160€</span>
+                        </div>
+                        <div class="service-footer">
+                            <span class="service-action">Voir détails & réserver <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-yin-yang"></i>
+            </div>
+            
+            <!-- Séances Spécifiques -->
+            <div class="service-category">
+                <h3 class="category-title"><i class="fas fa-magic"></i> Séances Spécifiques</h3>
+                
+                <div class="services-grid">
+                    <div class="service-card clickable" onclick="openServiceDetails('verrue')">
+                        <div class="service-icon">
+                            <i class="fas fa-hand-sparkles"></i>
+                        </div>
+                        <h4>Soin Verrue</h4>
+                        <div class="price-tag">60€</div>
+                        <p class="service-note">Forfait complet 3 phases</p>
+                        <div class="service-footer">
+                            <span class="service-action">Voir détails & réserver <i class="fas fa-arrow-right"></i></span>
+                        </div>
                     </div>
-                    <h3>Soin Personnalisé</h3>
-                    <p>Combinaison intuitive adaptée à vos besoins du moment. Guidance spirituelle incluse.</p>
-                    <ul class="service-benefits">
-                        <li>Approche sur mesure</li>
-                        <li>Guidance spirituelle</li>
-                        <li>Adaptation intuitive</li>
-                    </ul>
-                    <div class="price">80€ • 1h30</div>
-                    <button type="button" class="btn btn-primary btn-service-book" data-service="personnalise" data-name="Soin Personnalisé" data-price="80" data-duration="90"><i class="fas fa-calendar-plus"></i> Réserver ce soin</button>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-globe"></i>
+                    
+                    <div class="service-card clickable" onclick="openServiceDetails('operation')">
+                        <div class="service-icon">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <h4>Accompagnement Opération</h4>
+                        <div class="price-tag">70€</div>
+                        <p class="service-duration"><i class="fas fa-clock"></i> 3 séances • 1h30 total</p>
+                        <div class="service-footer">
+                            <span class="service-action">Voir détails & réserver <i class="fas fa-arrow-right"></i></span>
+                        </div>
                     </div>
-                    <h3>Soin à Distance</h3>
-                    <p>L'énergie transcende l'espace. Séance efficace depuis chez vous.</p>
-                    <ul class="service-benefits">
-                        <li>Depuis votre domicile</li>
-                        <li>Efficacité prouvée</li>
-                        <li>Énergie sans frontières</li>
-                    </ul>
-                    <div class="price">50€ • 45min</div>
-                    <button type="button" class="btn btn-primary btn-service-book" data-service="distance" data-name="Soin à Distance" data-price="50" data-duration="45"><i class="fas fa-calendar-plus"></i> Réserver ce soin</button>
                 </div>
             </div>
         </div>
@@ -192,7 +333,7 @@
             <div class="section-header">
                 <span class="section-label">📅 Réservation</span>
                 <h2>Prenez Rendez-vous</h2>
-                <p>Choisissez votre créneau et réservez en ligne</p>
+                <p>Consultez les disponibilités et réservez votre séance</p>
             </div>
             
             <div class="reservation-grid">
@@ -207,7 +348,7 @@
                 
                 <div class="booking-form-container">
                     <h3><i class="fas fa-file-alt"></i> Formulaire de Réservation</h3>
-                    <form class="booking-form" id="bookingForm">
+                    <form class="booking-form" id="bookingForm" onsubmit="handleQuickBooking(event)">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="booking-name"><i class="fas fa-user"></i> Nom complet *</label>
@@ -234,10 +375,11 @@
                                 <select id="booking-time" name="time" required>
                                     <option value="">Sélectionnez...</option>
                                     <option value="09:00">09:00</option>
-                                    <option value="10:30">10:30</option>
-                                    <option value="12:00">12:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
                                     <option value="14:00">14:00</option>
-                                    <option value="15:30">15:30</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
                                     <option value="17:00">17:00</option>
                                 </select>
                             </div>
@@ -247,18 +389,38 @@
                             <label for="booking-service"><i class="fas fa-spa"></i> Type de soin *</label>
                             <select id="booking-service" name="service" required>
                                 <option value="">Sélectionnez un soin...</option>
-                                <option value="reiki">Reiki Usui - 60€ (1h)</option>
-                                <option value="lahochi">Lahochi - 60€ (1h)</option>
-                                <option value="magnetisme">Magnétisme - 60€ (1h)</option>
-                                <option value="chakras">Harmonisation Chakras - 70€ (1h15)</option>
-                                <option value="personnalise">Soin Personnalisé - 80€ (1h30)</option>
-                                <option value="distance">Soin à Distance - 50€ (45min)</option>
+                                <optgroup label="Séances Intuitives Guidées">
+                                    <option value="intuitif-adulte">Adulte - 60€ (présentiel) / 50€ (distanciel)</option>
+                                    <option value="intuitif-enfant">Enfant (-12 ans) - 40€ / 30€</option>
+                                    <option value="intuitif-animal">Animal - 40€ / 30€</option>
+                                </optgroup>
+                                <optgroup label="Reiki & Lahochi">
+                                    <option value="reiki-lahochi">Séance - 60€ (1h)</option>
+                                    <option value="forfait-reiki">Forfait 4 séances - 210€</option>
+                                </optgroup>
+                                <optgroup label="Soins Spécialisés">
+                                    <option value="sonore">Séance Sonore Énergétique - 60€</option>
+                                    <option value="magnetisme-cranien">Magnétisme Crânien - 60€</option>
+                                    <option value="micro-massage">Micro-massage - 60€</option>
+                                </optgroup>
+                                <optgroup label="Accompagnements">
+                                    <option value="accompagnement">Accompagnement Holistique - 60€</option>
+                                    <option value="forfait-accompagnement">Forfait 3 séances - 160€</option>
+                                </optgroup>
+                                <optgroup label="Séances Spécifiques">
+                                    <option value="verrue">Verrue - 60€ (forfait 3 phases)</option>
+                                    <option value="operation">Accompagnement Opération - 70€</option>
+                                </optgroup>
                             </select>
                         </div>
                         
                         <div class="form-group">
-                            <label for="booking-promo"><i class="fas fa-gift"></i> Code promo (optionnel)</label>
-                            <input type="text" id="booking-promo" name="promo" placeholder="DECOUVERTE20">
+                            <label for="booking-location"><i class="fas fa-map-marker-alt"></i> Lieu *</label>
+                            <select id="booking-location" name="location" required>
+                                <option value="">Sélectionnez...</option>
+                                <option value="presentiel">Présentiel (Cabinet à Beauvoisin)</option>
+                                <option value="distanciel">À distance</option>
+                            </select>
                         </div>
                         
                         <div class="form-group">
@@ -268,13 +430,17 @@
                         
                         <div class="form-group checkbox-group">
                             <input type="checkbox" id="booking-accept" name="accept" required>
-                            <label for="booking-accept">J'accepte les <a href="#cgv">conditions générales</a> et la <a href="#confidentialite">politique de confidentialité</a> *</label>
+                            <label for="booking-accept">J'accepte que mes données soient utilisées pour traiter ma demande *</label>
                         </div>
                         
                         <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fas fa-check-circle"></i> Confirmer la réservation
+                            <i class="fas fa-check-circle"></i> Envoyer la demande de réservation
                         </button>
                     </form>
+                    
+                    <div class="booking-info-small">
+                        <p><i class="fas fa-info-circle"></i> Votre demande sera envoyée par email. Sabrine vous contactera rapidement pour confirmer votre rendez-vous.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -388,31 +554,41 @@
             <div class="section-header">
                 <span class="section-label">💌 Contact</span>
                 <h2>Restons Connectés</h2>
+                <p>Contactez-moi directement pour toute question</p>
             </div>
             
-            <div class="contact-quick">
-                <div class="contact-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Adresse</h3>
-                    <p>180 rue des mimosas<br>Hameau de Franquevaux<br>Beauvoisin</p>
+            <div class="reservation-methods">
+                <div class="method-card primary">
+                    <div class="method-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Par Téléphone</h3>
+                    <p>Le moyen le plus rapide pour échanger</p>
+                    <a href="tel:0786996950" class="btn btn-primary btn-large">
+                        <i class="fas fa-phone"></i> 07 86 99 69 50
+                    </a>
                 </div>
-                <div class="contact-card">
-                    <i class="fas fa-phone"></i>
-                    <h3>Téléphone</h3>
-                    <p><a href="tel:0786996950">07 86 99 69 50</a></p>
-                    <a href="tel:0786996950" class="btn btn-primary btn-sm">Appeler</a>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>Via WhatsApp</h3>
+                    <p>Envoyez-moi un message instantané</p>
+                    <a href="https://wa.me/33786996950?text=Bonjour%20Sabrine,%20j'ai%20une%20question" target="_blank" rel="noopener" class="btn btn-primary btn-large">
+                        <i class="fab fa-whatsapp"></i> Envoyer un message
+                    </a>
                 </div>
-                <div class="contact-card">
-                    <i class="fas fa-envelope"></i>
-                    <h3>Email</h3>
-                    <p><a href="mailto:sabrine.sjk@gmail.com">sabrine.sjk@gmail.com</a></p>
-                    <a href="mailto:sabrine.sjk@gmail.com" class="btn btn-primary btn-sm">Écrire</a>
-                </div>
-                <div class="contact-card">
-                    <i class="fab fa-whatsapp"></i>
-                    <h3>WhatsApp</h3>
-                    <p>Message instantané</p>
-                    <a href="https://wa.me/33786996950" target="_blank" class="btn btn-primary btn-sm">Discuter</a>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Par Email</h3>
+                    <p>Pour toute demande d'information</p>
+                    <a href="mailto:sabrine.sjk@gmail.com?subject=Demande d'information" class="btn btn-primary btn-large">
+                        <i class="fas fa-envelope"></i> sabrine.sjk@gmail.com
+                    </a>
                 </div>
             </div>
             
@@ -701,91 +877,425 @@
 
     <!-- Modal Espace Membre -->
     <div id="memberModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content modal-large">
             <span class="modal-close" onclick="closeMemberSpace()">&times;</span>
-            <div class="modal-header">
-                <i class="fas fa-user-circle"></i>
-                <h2>Espace Membre</h2>
+            
+            <!-- Écran de connexion/inscription -->
+            <div id="authScreen">
+                <div class="modal-header">
+                    <i class="fas fa-user-circle"></i>
+                    <h2>Espace Membre</h2>
+                </div>
+                
+                <div class="modal-tabs">
+                    <button class="tab-btn active" onclick="showTab('login')">Connexion</button>
+                    <button class="tab-btn" onclick="showTab('register')">Inscription</button>
+                </div>
+                
+                <!-- Formulaire de connexion -->
+                <div id="loginTab" class="tab-content active">
+                    <form class="member-form" id="loginForm" onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="login-email"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="login-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password"><i class="fas fa-lock"></i> Mot de passe</label>
+                            <input type="password" id="login-password" name="password" required>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Se souvenir de moi</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-sign-in-alt"></i> Se connecter
+                        </button>
+                        <a href="#" class="forgot-link">Mot de passe oublié ?</a>
+                    </form>
+                </div>
+                
+                <!-- Formulaire d'inscription -->
+                <div id="registerTab" class="tab-content">
+                    <form class="member-form" id="registerForm" onsubmit="handleRegister(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reg-firstname"><i class="fas fa-user"></i> Prénom *</label>
+                                <input type="text" id="reg-firstname" name="firstname" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-lastname"><i class="fas fa-user"></i> Nom *</label>
+                                <input type="text" id="reg-lastname" name="lastname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-email"><i class="fas fa-envelope"></i> Email *</label>
+                            <input type="email" id="reg-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-phone"><i class="fas fa-phone"></i> Téléphone *</label>
+                            <input type="tel" id="reg-phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-birthdate"><i class="fas fa-calendar"></i> Date de naissance</label>
+                            <input type="date" id="reg-birthdate" name="birthdate">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reg-password"><i class="fas fa-lock"></i> Mot de passe *</label>
+                                <input type="password" id="reg-password" name="password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-confirm"><i class="fas fa-lock"></i> Confirmer *</label>
+                                <input type="password" id="reg-confirm" name="confirm" required>
+                            </div>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="reg-newsletter" name="newsletter">
+                            <label for="reg-newsletter">Recevoir la newsletter</label>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="reg-terms" name="terms" required>
+                            <label for="reg-terms">J'accepte les conditions d'utilisation *</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-user-plus"></i> Créer mon compte
+                        </button>
+                    </form>
+                </div>
             </div>
             
-            <div class="modal-tabs">
-                <button class="tab-btn active" onclick="showTab('login')">Connexion</button>
-                <button class="tab-btn" onclick="showTab('register')">Inscription</button>
-            </div>
-            
-            <!-- Formulaire de connexion -->
-            <div id="loginTab" class="tab-content active">
-                <form class="member-form" id="loginForm">
-                    <div class="form-group">
-                        <label for="login-email"><i class="fas fa-envelope"></i> Email</label>
-                        <input type="email" id="login-email" name="email" required>
+            <!-- Dashboard Membre (caché par défaut) -->
+            <div id="memberDashboard" style="display: none;">
+                <div class="dashboard-header">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div>
+                            <h2>Bienvenue, <span id="userName">Marie</span></h2>
+                            <p class="user-status">Membre depuis <span id="memberSince">janvier 2025</span></p>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="login-password"><i class="fas fa-lock"></i> Mot de passe</label>
-                        <input type="password" id="login-password" name="password" required>
-                    </div>
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" id="remember" name="remember">
-                        <label for="remember">Se souvenir de moi</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fas fa-sign-in-alt"></i> Se connecter
+                    <button class="btn btn-secondary" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
                     </button>
-                    <a href="#" class="forgot-link">Mot de passe oublié ?</a>
-                </form>
-            </div>
-            
-            <!-- Formulaire d'inscription -->
-            <div id="registerTab" class="tab-content">
-                <form class="member-form" id="registerForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="reg-firstname"><i class="fas fa-user"></i> Prénom *</label>
-                            <input type="text" id="reg-firstname" name="firstname" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="reg-lastname"><i class="fas fa-user"></i> Nom *</label>
-                            <input type="text" id="reg-lastname" name="lastname" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-email"><i class="fas fa-envelope"></i> Email *</label>
-                        <input type="email" id="reg-email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-phone"><i class="fas fa-phone"></i> Téléphone *</label>
-                        <input type="tel" id="reg-phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-birthdate"><i class="fas fa-calendar"></i> Date de naissance</label>
-                        <input type="date" id="reg-birthdate" name="birthdate">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="reg-password"><i class="fas fa-lock"></i> Mot de passe *</label>
-                            <input type="password" id="reg-password" name="password" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="reg-confirm"><i class="fas fa-lock"></i> Confirmer *</label>
-                            <input type="password" id="reg-confirm" name="confirm" required>
-                        </div>
-                    </div>
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" id="reg-newsletter" name="newsletter">
-                        <label for="reg-newsletter">Recevoir la newsletter</label>
-                    </div>
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" id="reg-terms" name="terms" required>
-                        <label for="reg-terms">J'accepte les conditions d'utilisation *</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fas fa-user-plus"></i> Créer mon compte
+                </div>
+                
+                <!-- Navigation du Dashboard -->
+                <div class="dashboard-nav">
+                    <button class="dash-tab-btn active" onclick="showDashSection('appointments')">
+                        <i class="fas fa-calendar-check"></i> Mes Rendez-vous
                     </button>
-                </form>
+                    <button class="dash-tab-btn" onclick="showDashSection('profile')">
+                        <i class="fas fa-user-edit"></i> Mes Coordonnées
+                    </button>
+                    <button class="dash-tab-btn" onclick="showDashSection('payments')">
+                        <i class="fas fa-credit-card"></i> Paiements
+                    </button>
+                    <button class="dash-tab-btn" onclick="showDashSection('history')">
+                        <i class="fas fa-history"></i> Historique
+                    </button>
+                    <button class="dash-tab-btn" onclick="showDashSection('evolution')">
+                        <i class="fas fa-chart-line"></i> Mon Évolution
+                    </button>
+                </div>
+                
+                <!-- Section Mes Rendez-vous -->
+                <div id="appointments-section" class="dash-section active">
+                    <h3><i class="fas fa-calendar-check"></i> Mes Rendez-vous</h3>
+                    
+                    <div class="appointments-grid">
+                        <!-- RDV à venir -->
+                        <div class="appointment-card upcoming">
+                            <div class="appointment-badge">À venir</div>
+                            <div class="appointment-header">
+                                <h4>Séance Intuitive Guidée</h4>
+                                <span class="appointment-price">60€</span>
+                            </div>
+                            <div class="appointment-details">
+                                <p><i class="fas fa-calendar"></i> Mercredi 20 décembre 2025</p>
+                                <p><i class="fas fa-clock"></i> 14:00 - 15:00</p>
+                                <p><i class="fas fa-map-marker-alt"></i> Cabinet - Beauvoisin</p>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn btn-secondary btn-sm" onclick="rescheduleAppointment(1)">
+                                    <i class="fas fa-edit"></i> Modifier
+                                </button>
+                                <button class="btn btn-danger btn-sm" onclick="cancelAppointment(1)">
+                                    <i class="fas fa-times"></i> Annuler
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- RDV passé -->
+                        <div class="appointment-card past">
+                            <div class="appointment-badge completed">Complété</div>
+                            <div class="appointment-header">
+                                <h4>Reiki Usui</h4>
+                                <span class="appointment-price">60€</span>
+                            </div>
+                            <div class="appointment-details">
+                                <p><i class="fas fa-calendar"></i> Lundi 4 décembre 2025</p>
+                                <p><i class="fas fa-clock"></i> 10:00 - 11:00</p>
+                                <p><i class="fas fa-check-circle"></i> Séance réalisée</p>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn btn-primary btn-sm" onclick="bookAgain('reiki')">
+                                    <i class="fas fa-redo"></i> Réserver à nouveau
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="newAppointment()">
+                        <i class="fas fa-plus"></i> Prendre un nouveau rendez-vous
+                    </button>
+                </div>
+                
+                <!-- Section Mes Coordonnées -->
+                <div id="profile-section" class="dash-section">
+                    <h3><i class="fas fa-user-edit"></i> Mes Coordonnées</h3>
+                    
+                    <form class="profile-form" onsubmit="updateProfile(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profile-firstname">Prénom</label>
+                                <input type="text" id="profile-firstname" value="Marie">
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-lastname">Nom</label>
+                                <input type="text" id="profile-lastname" value="Dupont">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-email">Email</label>
+                            <input type="email" id="profile-email" value="marie.dupont@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-phone">Téléphone</label>
+                            <input type="tel" id="profile-phone" value="06 12 34 56 78">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-address">Adresse</label>
+                            <textarea id="profile-address" rows="3">123 rue de la Paix, 75000 Paris</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-birthdate">Date de naissance</label>
+                            <input type="date" id="profile-birthdate" value="1985-06-15">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Enregistrer les modifications
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Section Paiements -->
+                <div id="payments-section" class="dash-section">
+                    <h3><i class="fas fa-credit-card"></i> Paiements & Factures</h3>
+                    
+                    <div class="payment-summary">
+                        <div class="summary-card">
+                            <i class="fas fa-euro-sign"></i>
+                            <div>
+                                <h4>120€</h4>
+                                <p>Total payé en 2025</p>
+                            </div>
+                        </div>
+                        <div class="summary-card pending">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>60€</h4>
+                                <p>En attente</p>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <i class="fas fa-gift"></i>
+                            <div>
+                                <h4>3</h4>
+                                <p>Séances restantes (forfait)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payments-list">
+                        <h4>Historique des paiements</h4>
+                        
+                        <div class="payment-item">
+                            <div class="payment-info">
+                                <i class="fas fa-file-invoice"></i>
+                                <div>
+                                    <h5>Séance Intuitive Guidée</h5>
+                                    <p>20 décembre 2025 (à venir)</p>
+                                </div>
+                            </div>
+                            <div class="payment-status pending-payment">
+                                <span class="status-badge">En attente</span>
+                                <span class="amount">60€</span>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="payNow(1)">
+                                <i class="fas fa-credit-card"></i> Payer maintenant
+                            </button>
+                        </div>
+                        
+                        <div class="payment-item">
+                            <div class="payment-info">
+                                <i class="fas fa-file-invoice"></i>
+                                <div>
+                                    <h5>Reiki Usui</h5>
+                                    <p>4 décembre 2025</p>
+                                </div>
+                            </div>
+                            <div class="payment-status paid">
+                                <span class="status-badge">Payé</span>
+                                <span class="amount">60€</span>
+                            </div>
+                            <button class="btn btn-secondary btn-sm" onclick="downloadInvoice(1)">
+                                <i class="fas fa-download"></i> Télécharger
+                            </button>
+                        </div>
+                        
+                        <div class="payment-item">
+                            <div class="payment-info">
+                                <i class="fas fa-file-invoice"></i>
+                                <div>
+                                    <h5>Forfait 4 séances Reiki</h5>
+                                    <p>15 novembre 2025</p>
+                                </div>
+                            </div>
+                            <div class="payment-status paid">
+                                <span class="status-badge">Payé</span>
+                                <span class="amount">210€</span>
+                            </div>
+                            <button class="btn btn-secondary btn-sm" onclick="downloadInvoice(2)">
+                                <i class="fas fa-download"></i> Télécharger
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section Historique -->
+                <div id="history-section" class="dash-section">
+                    <h3><i class="fas fa-history"></i> Historique des Séances</h3>
+                    
+                    <div class="history-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h4>Reiki Usui</h4>
+                                    <span class="timeline-date">4 décembre 2025</span>
+                                </div>
+                                <p><strong>Durée:</strong> 1h • <strong>Type:</strong> Présentiel</p>
+                                <p class="timeline-note">Séance très apaisante, ressenti de chaleur au niveau du plexus solaire.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h4>Séance Intuitive Guidée</h4>
+                                    <span class="timeline-date">20 novembre 2025</span>
+                                </div>
+                                <p><strong>Durée:</strong> 1h • <strong>Type:</strong> Présentiel</p>
+                                <p class="timeline-note">Travail profond sur les émotions. Utilisation du tambour et des pierres.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h4>Reiki Usui</h4>
+                                    <span class="timeline-date">15 novembre 2025</span>
+                                </div>
+                                <p><strong>Durée:</strong> 1h • <strong>Type:</strong> Présentiel</p>
+                                <p class="timeline-note">Première séance du forfait. Découverte du Reiki, très relaxant.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section Mon Évolution -->
+                <div id="evolution-section" class="dash-section">
+                    <h3><i class="fas fa-chart-line"></i> Mon Évolution</h3>
+                    
+                    <div class="evolution-summary">
+                        <div class="evolution-stat">
+                            <i class="fas fa-calendar-check"></i>
+                            <h4>5</h4>
+                            <p>Séances réalisées</p>
+                        </div>
+                        <div class="evolution-stat">
+                            <i class="fas fa-clock"></i>
+                            <h4>5h30</h4>
+                            <p>Temps de soins</p>
+                        </div>
+                        <div class="evolution-stat">
+                            <i class="fas fa-smile"></i>
+                            <h4>Excellent</h4>
+                            <p>Ressenti global</p>
+                        </div>
+                    </div>
+                    
+                    <div class="evolution-content">
+                        <h4>Objectifs & Intentions</h4>
+                        <div class="goals-list">
+                            <div class="goal-item completed">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Réduire le stress et l'anxiété</span>
+                            </div>
+                            <div class="goal-item in-progress">
+                                <i class="fas fa-spinner"></i>
+                                <span>Améliorer la qualité du sommeil</span>
+                            </div>
+                            <div class="goal-item">
+                                <i class="fas fa-circle"></i>
+                                <span>Développer la confiance en soi</span>
+                            </div>
+                        </div>
+                        
+                        <h4 style="margin-top: 2rem;">Journal de Bord</h4>
+                        <div class="journal-entries">
+                            <div class="journal-entry">
+                                <div class="journal-header">
+                                    <span class="journal-date">4 décembre 2025</span>
+                                    <span class="journal-mood">😊 Bien-être</span>
+                                </div>
+                                <p>Après ma séance de Reiki, je me sens beaucoup plus apaisée. Les tensions dans mes épaules ont diminué et j'ai mieux dormi cette nuit.</p>
+                            </div>
+                            
+                            <div class="journal-entry">
+                                <div class="journal-header">
+                                    <span class="journal-date">20 novembre 2025</span>
+                                    <span class="journal-mood">✨ Transformation</span>
+                                </div>
+                                <p>Séance intense aujourd'hui. J'ai ressenti une libération émotionnelle importante. Le travail avec le tambour m'a beaucoup aidée.</p>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" onclick="addJournalEntry()">
+                            <i class="fas fa-plus"></i> Ajouter une entrée
+                        </button>
+                    </div>
+                    
+                    <div class="therapist-notes">
+                        <h4><i class="fas fa-user-md"></i> Notes de Sabrine</h4>
+                        <p class="therapist-note"><em>"Marie progresse très bien. Son ouverture et sa réceptivité permettent un travail en profondeur. Je recommande de continuer les séances régulières pour ancrer les changements."</em></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/locales/fr.js'></script>
+    
+    <!-- Firebase -->
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="firebase-bookings.js"></script>
+    <script type="module" src="workflow-manager.js"></script>
+    
     <script src="script.js"></script>
 </body>
 </html>

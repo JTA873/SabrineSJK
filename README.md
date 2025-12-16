@@ -1,6 +1,6 @@
-# Site Web - Sabrine SJK - Thérapeute Holistique
+# Site Web - Sandrine SJK - Thérapeute Holistique
 
-Site web moderne et professionnel pour Sabrine SJK, thérapeute holistique spécialisée dans les soins énergétiques et l'accompagnement au bien-être.
+Site web moderne et professionnel pour Sandrine SJK, thérapeute holistique spécialisée dans les soins énergétiques et l'accompagnement au bien-être.
 
 ## 🌟 Caractéristiques
 

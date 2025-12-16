@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil - Sabrine SJK</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .profile-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        .profile-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary-color);
+            border: 4px solid rgba(255,255,255,0.3);
+        }
+        .profile-info h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2rem;
+        }
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+        .tabs {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background: var(--light-color);
+        }
+        .tab-content {
+            padding: 2rem;
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .booking-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+        .booking-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+        }
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .booking-number {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .booking-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-confirmed { background: #d4edda; color: #155724; }
+        .status-completed { background: #d1ecf1; color: #0c5460; }
+        .status-cancelled { background: #f8d7da; color: #721c24; }
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+        }
+        .detail-item i {
+            color: var(--primary-color);
+            width: 20px;
+        }
+        .booking-actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+        }
+        .btn-download {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        .btn-download:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+        .timeline-content {
+            background: var(--light-color);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .loyalty-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+        .points-display {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <!-- Header -->
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-info">
+                <h1 id="profileName">Mon Profil</h1>
+                <p id="profileEmail"></p>
+                <p id="profilePhone"></p>
+            </div>
+        </div>
+
+        <!-- Statistiques -->
+        <div class="profile-stats">
+            <div class="stat-card">
+                <i class="fas fa-calendar-check"></i>
+                <div class="stat-value" id="totalBookings">0</div>
+                <div class="stat-label">Réservations</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-euro-sign"></i>
+                <div class="stat-value" id="totalSpent">0€</div>
+                <div class="stat-label">Total dépensé</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-star"></i>
+                <div class="stat-value" id="loyaltyPoints">0</div>
+                <div class="stat-label">Points fidélité</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-clock"></i>
+                <div class="stat-value" id="nextBooking">-</div>
+                <div class="stat-label">Prochaine séance</div>
+            </div>
+        </div>
+
+        <!-- Onglets -->
+        <div class="tabs">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab('bookings')">
+                    <i class="fas fa-calendar-alt"></i> Mes Réservations
+                </button>
+                <button class="tab-btn" onclick="switchTab('documents')">
+                    <i class="fas fa-file-invoice"></i> Documents
+                </button>
+                <button class="tab-btn" onclick="switchTab('history')">
+                    <i class="fas fa-history"></i> Historique
+                </button>
+                <button class="tab-btn" onclick="switchTab('loyalty')">
+                    <i class="fas fa-gift"></i> Fidélité
+                </button>
+            </div>
+
+            <!-- Onglet Réservations -->
+            <div id="bookings" class="tab-content active">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> Chargement...
+                </div>
+                <div id="bookingsList"></div>
+            </div>
+
+            <!-- Onglet Documents -->
+            <div id="documents" class="tab-content">
+                <h3><i class="fas fa-file-alt"></i> Mes Documents</h3>
+                <div id="documentsList"></div>
+            </div>
+
+            <!-- Onglet Historique -->
+            <div id="history" class="tab-content">
+                <h3><i class="fas fa-clock"></i> Historique d'activité</h3>
+                <div class="timeline" id="historyTimeline"></div>
+            </div>
+
+            <!-- Onglet Fidélité -->
+            <div id="loyalty" class="tab-content">
+                <div class="loyalty-card">
+                    <h3><i class="fas fa-crown"></i> Programme Fidélité</h3>
+                    <div class="points-display" id="loyaltyPointsDisplay">0 points</div>
+                    <p>Gagnez 1 point pour chaque 10€ dépensés</p>
+                    <p>100 points = 10€ de réduction sur votre prochaine séance</p>
+                </div>
+                <div id="rewardsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { db, collection, getDocs, query, where, orderBy } from './firebase-config.js';
+
+        let currentClient = null;
+
+        // Fonction pour charger le profil
+        async function loadProfile() {
+            // Pour la démo, on utilise un email en paramètre d'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email') || 'marie.exemple@email.com';
+
+            try {
+                // Charger le profil client
+                const clientQuery = query(
+                    collection(db, "clients"),
+                    where("email", "==", email)
+                );
+                const clientSnapshot = await getDocs(clientQuery);
+
+                if (!clientSnapshot.empty) {
+                    currentClient = { id: clientSnapshot.docs[0].id, ...clientSnapshot.docs[0].data() };
+                    
+                    // Afficher les infos
+                    document.getElementById('profileName').textContent = currentClient.name;
+                    document.getElementById('profileEmail').textContent = currentClient.email;
+                    document.getElementById('profilePhone').textContent = currentClient.phone;
+                    
+                    document.getElementById('totalBookings').textContent = currentClient.totalBookings || 0;
+                    document.getElementById('totalSpent').textContent = (currentClient.totalSpent || 0) + '€';
+                    document.getElementById('loyaltyPoints').textContent = currentClient.loyaltyPoints || 0;
+                    document.getElementById('loyaltyPointsDisplay').textContent = (currentClient.loyaltyPoints || 0) + ' points';
+                }
+
+                // Charger les réservations
+                await loadBookings(email);
+                
+                // Charger l'historique
+                await loadHistory(email);
+
+            } catch (error) {
+                console.error('Erreur:', error);
+            }
+        }
+
+        // Charger les réservations
+        async function loadBookings(email) {
+            const bookingsQuery = query(
+                collection(db, "bookings"),
+                where("email", "==", email),
+                orderBy("createdAt", "desc")
+            );
+
+            const snapshot = await getDocs(bookingsQuery);
+            const container = document.getElementById('bookingsList');
+            container.innerHTML = '';
+
+            if (snapshot.empty) {
+                container.innerHTML = '<p style="text-align:center; padding:2rem; color:#999;">Aucune réservation</p>';
+                return;
+            }
+
+            snapshot.forEach(doc => {
+                const booking = doc.data();
+                const card = createBookingCard({ id: doc.id, ...booking });
+                container.appendChild(card);
+            });
+        }
+
+        // Créer une carte de réservation
+        function createBookingCard(booking) {
+            const card = document.createElement('div');
+            card.className = 'booking-card';
+            
+            const statusLabels = {
+                pending: 'En attente',
+                confirmed: 'Confirmée',
+                completed: 'Terminée',
+                cancelled: 'Annulée'
+            };
+
+            card.innerHTML = `
+                <div class="booking-header">
+                    <div class="booking-number">#${booking.bookingNumber || booking.id.substring(0, 8)}</div>
+                    <span class="booking-status status-${booking.status}">${statusLabels[booking.status] || booking.status}</span>
+                </div>
+                <div class="booking-details">
+                    <div class="detail-item">
+                        <i class="fas fa-spa"></i>
+                        <span><strong>${booking.serviceName}</strong></span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>${booking.date} à ${booking.time}</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>${booking.duration} minutes</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-euro-sign"></i>
+                        <span><strong>${booking.total}€</strong></span>
+                    </div>
+                    ${booking.participants > 1 ? `
+                    <div class="detail-item">
+                        <i class="fas fa-users"></i>
+                        <span>${booking.participants} personnes</span>
+                    </div>
+                    ` : ''}
+                </div>
+                <div class="booking-actions">
+                    <button class="btn-download" onclick="downloadQuote('${booking.id}')">
+                        <i class="fas fa-file-download"></i> Télécharger le devis
+                    </button>
+                    ${booking.invoiceNumber ? `
+                    <button class="btn-download" onclick="downloadInvoice('${booking.id}')">
+                        <i class="fas fa-file-invoice"></i> Télécharger la facture
+                    </button>
+                    ` : ''}
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Charger l'historique
+        async function loadHistory(email) {
+            const historyQuery = query(
+                collection(db, "history"),
+                where("clientEmail", "==", email),
+                orderBy("timestamp", "desc")
+            );
+
+            const snapshot = await getDocs(historyQuery);
+            const container = document.getElementById('historyTimeline');
+            container.innerHTML = '';
+
+            snapshot.forEach(doc => {
+                const item = doc.data();
+                const div = document.createElement('div');
+                div.className = 'timeline-item';
+                
+                const date = new Date(item.timestamp);
+                div.innerHTML = `
+                    <div class="timeline-date">${date.toLocaleDateString('fr-FR')} à ${date.toLocaleTimeString('fr-FR')}</div>
+                    <div class="timeline-content">
+                        <strong>${item.type.replace(/_/g, ' ')}</strong>
+                        <p>${item.description}</p>
+                    </div>
+                `;
+                
+                container.appendChild(div);
+            });
+        }
+
+        // Changer d'onglet
+        window.switchTab = function(tabName) {
+            // Masquer tous les onglets
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Afficher l'onglet sélectionné
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        };
+
+        // Télécharger un document (à implémenter)
+        window.downloadQuote = function(bookingId) {
+            alert('Téléchargement du devis en cours...');
+        };
+
+        window.downloadInvoice = function(bookingId) {
+            alert('Téléchargement de la facture en cours...');
+        };
+
+        // Charger au démarrage
+        loadProfile();
+    </script>
+</body>
+</html>
