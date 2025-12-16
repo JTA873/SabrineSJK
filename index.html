@@ -22,7 +22,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css' rel='stylesheet' />
+    <link href='https://unpkg.com/@fullcalendar/core@6.1.10/main.min.css' rel='stylesheet' />
+    <link href='https://unpkg.com/@fullcalendar/daygrid@6.1.10/main.min.css' rel='stylesheet' />
 </head>
 <body>
     <!-- Bandeau Promo -->
@@ -49,7 +50,15 @@
                     <li><a href="#reservation" class="nav-link"><i class="fas fa-calendar-check"></i> <span>Réserver</span></a></li>
                     <li><a href="#temoignages" class="nav-link"><i class="fas fa-star"></i> <span>Témoignages</span></a></li>
                     <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
-                    <li><a href="#" class="btn-membre" onclick="openMemberSpace(event)"><i class="fas fa-user-circle"></i> <span>Mon Espace</span></a></li>
+                    <li><a href="javascript:void(0)" class="btn-login" id="btnOpenLogin"><i class="fas fa-sign-in-alt"></i> <span>Connexion</span></a></li>
+                    <li style="display:none;" id="userMenuContainer">
+                        <a href="javascript:void(0)" class="btn-membre" id="btnUserMenu"><i class="fas fa-user-circle"></i> <span id="userName">Mon Espace</span></a>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="javascript:void(0)" id="btnMySpace"><i class="fas fa-th-large"></i> Mon Espace</a>
+                            <a href="javascript:void(0)" id="btnAdminDashboard" style="display:none;"><i class="fas fa-cog"></i> Administration</a>
+                            <a href="javascript:void(0)" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -131,9 +140,9 @@
     <section id="services" class="services">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">✨ Soins & Accompagnements</span>
-                <h2>Mes Services & Tarifs</h2>
-                <p>Cliquez sur un service pour voir les détails et réserver votre séance</p>
+                <span class="section-label">Soins & Accompagnements</span>
+                <h2>Services & Tarifs</h2>
+                <p class="section-subtitle">Choisissez le soin qui vous correspond</p>
             </div>
             
             <!-- Séances Intuitives Guidées -->
@@ -1288,14 +1297,893 @@
         </div>
     </div>
 
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/locales/fr.js'></script>
+    <!-- Modal de Connexion -->
+    <div id="loginModal" class="modal" style="display: none;">
+        <div class="modal-content login-modal-content">
+            <span class="modal-close" onclick="closeLoginModal()">&times;</span>
+            <div class="login-header">
+                <h2>✨ Connexion</h2>
+                <p>Accédez à votre espace personnel</p>
+            </div>
+            <div id="loginError" class="error-message" style="display: none;"></div>
+            <form id="loginForm" class="login-form" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="loginEmail">📧 Email</label>
+                    <input type="email" id="loginEmail" required placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">🔒 Mot de passe</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="rememberMe"> Se souvenir de moi
+                    </label>
+                </div>
+                <button type="button" class="btn btn-primary btn-block" id="btnSubmitLogin">
+                    <i class="fas fa-sign-in-alt"></i> Se connecter
+                </button>
+                
+                <div class="divider-text">
+                    <span>OU</span>
+                </div>
+                
+                <button type="button" class="btn btn-google btn-block" id="btnGoogleLogin">
+                    <i class="fab fa-google"></i> Continuer avec Google
+                </button>
+                
+                <div class="form-footer">
+                    <p class="text-center">Pas encore de compte ? <a href="#" id="btnShowRegisterModal" class="link-primary">S'inscrire</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal d'Inscription -->
+    <div id="registerModal" class="modal" style="display: none;">
+        <div class="modal-content login-modal-content">
+            <span class="modal-close" onclick="closeRegisterModal()">&times;</span>
+            <div class="login-header">
+                <h2>✨ Créer un compte</h2>
+                <p>Rejoignez-nous pour réserver vos séances</p>
+            </div>
+            <div id="registerError" class="error-message" style="display: none;"></div>
+            <form id="registerForm" class="login-form" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="registerFirstName">👤 Prénom *</label>
+                    <input type="text" id="registerFirstName" required placeholder="Votre prénom">
+                </div>
+                <div class="form-group">
+                    <label for="registerLastName">👤 Nom *</label>
+                    <input type="text" id="registerLastName" required placeholder="Votre nom">
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">📧 Email *</label>
+                    <input type="email" id="registerEmail" required placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">🔒 Mot de passe *</label>
+                    <input type="password" id="registerPassword" required placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label for="registerBirthDate">🎂 Date de naissance *</label>
+                    <input type="date" id="registerBirthDate" required>
+                </div>
+                <button type="button" class="btn btn-primary btn-block" id="btnSubmitRegister">
+                    <i class="fas fa-user-plus"></i> Créer mon compte
+                </button>
+                <div class="form-footer">
+                    <p class="text-center">Déjà inscrit ? <a href="#" id="btnShowLoginFromRegister" class="link-primary">Se connecter</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Section Administration (visible uniquement admin) -->
+    <section id="adminDashboard" class="admin-section" style="display: none;">
+        <div class="container">
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="switchAdminTab('site')">
+                    <i class="fas fa-home"></i> Site Client
+                </button>
+                <button class="admin-tab" onclick="switchAdminTab('dashboard')">
+                    <i class="fas fa-cog"></i> Administration
+                </button>
+            </div>
+
+            <div id="adminTabSite" class="admin-tab-content active">
+                <div style="background: linear-gradient(135deg, #8b7355, #d4a574); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <h2 style="margin: 0 0 10px 0;"><i class="fas fa-eye"></i> Vue Site Client</h2>
+                    <p style="margin: 0; opacity: 0.9;">Vous voyez le site comme vos clients le voient</p>
+                </div>
+                <!-- Les sections publiques s'afficheront ici via JavaScript -->
+            </div>
+
+            <div id="adminTabDashboard" class="admin-tab-content" style="display: none;">
+                <div class="dashboard-grid">
+                    <!-- Stats Cards -->
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-label">Réservations en attente</span>
+                                <span class="stat-value" id="statPending">0</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-label">Confirmées</span>
+                                <span class="stat-value" id="statConfirmed">0</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-euro-sign"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-label">Revenu total</span>
+                                <span class="stat-value" id="statRevenue">0€</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-label">Clients</span>
+                                <span class="stat-value" id="statClients">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gestion -->
+                    <div class="admin-panels">
+                        <div class="admin-panel">
+                            <h3><i class="fas fa-calendar-check"></i> Réservations</h3>
+                            <div id="bookingsTable"></div>
+                        </div>
+
+                        <div class="admin-panel">
+                            <h3><i class="fas fa-file-invoice"></i> Factures</h3>
+                            <div id="invoicesSection"></div>
+                        </div>
+
+                        <div class="admin-panel">
+                            <h3><i class="fas fa-users"></i> Gestion Clients</h3>
+                            <div id="clientsSection"></div>
+                        </div>
+
+                        <div class="admin-panel">
+                            <h3><i class="fas fa-cog"></i> Paramètres</h3>
+                            <div id="settingsSection"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Espace Client (visible uniquement clients connectés) -->
+    <section id="clientSpace" class="client-section" style="display: none;">
+        <div class="container">
+            <div class="client-header">
+                <h2><i class="fas fa-user-circle"></i> Mon Espace Client</h2>
+                <p id="clientWelcome">Bienvenue</p>
+            </div>
+
+            <div class="client-tabs">
+                <button class="client-tab active" onclick="switchClientTab('bookings')">
+                    <i class="fas fa-calendar"></i> Mes Réservations
+                </button>
+                <button class="client-tab" onclick="switchClientTab('documents')">
+                    <i class="fas fa-file-alt"></i> Documents
+                </button>
+                <button class="client-tab" onclick="switchClientTab('history')">
+                    <i class="fas fa-history"></i> Historique
+                </button>
+            </div>
+
+            <div id="clientTabBookings" class="client-tab-content active">
+                <div id="clientBookingsList"></div>
+            </div>
+
+            <div id="clientTabDocuments" class="client-tab-content" style="display: none;">
+                <div id="clientDocumentsList"></div>
+            </div>
+
+            <div id="clientTabHistory" class="client-tab-content" style="display: none;">
+                <div id="clientHistoryList"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FullCalendar depuis unpkg (alternative à jsDelivr) -->
+    <script src='https://unpkg.com/@fullcalendar/core@6.1.10/index.global.min.js'></script>
+    <script src='https://unpkg.com/@fullcalendar/daygrid@6.1.10/index.global.min.js'></script>
+    <script src='https://unpkg.com/@fullcalendar/interaction@6.1.10/index.global.min.js'></script>
+    <script src='https://unpkg.com/@fullcalendar/core@6.1.10/locales/fr.global.min.js'></script>
     
-    <!-- Firebase -->
-    <script type="module" src="firebase-config.js"></script>
-    <script type="module" src="firebase-bookings.js"></script>
-    <script type="module" src="workflow-manager.js"></script>
-    
-    <script src="script.js"></script>
+    <!-- Firebase SDKs + Gestion complète de la navigation -->
+    <script type="module">
+        console.log('🔥 Chargement Firebase...');
+        
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+        import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, setDoc, doc, getDoc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyB6hNLg-Ad2XihTrVD5P-3wI2H3kl6IUVg",
+            authDomain: "sandrinesjk.firebaseapp.com",
+            projectId: "sandrinesjk",
+            storageBucket: "sandrinesjk.firebasestorage.app",
+            messagingSenderId: "481099745596",
+            appId: "1:481099745596:web:af7fe189c144ba2a44f639",
+            measurementId: "G-XS6F46SLVT"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        
+        console.log('✅ Firebase initialisé');
+
+        // Variables globales pour l'authentification
+        let currentUser = null;
+        let currentUserData = null;
+
+        // ===== GESTION DU MODAL =====
+        window.openLoginModal = function() {
+            console.log('🔐 Ouverture du modal...');
+            const modal = document.getElementById('loginModal');
+            modal.style.display = 'flex';
+            modal.classList.add('active');
+            setTimeout(() => {
+                document.getElementById('loginEmail')?.focus();
+            }, 100);
+        };
+
+        window.closeLoginModal = function() {
+            const modal = document.getElementById('loginModal');
+            modal.classList.remove('active');
+            modal.style.display = 'none';
+            document.getElementById('loginForm')?.reset();
+            const errorDiv = document.getElementById('loginError');
+            if (errorDiv) errorDiv.style.display = 'none';
+        };
+
+        window.openRegisterModal = function() {
+            console.log('📝 Ouverture du modal inscription...');
+            const modal = document.getElementById('registerModal');
+            modal.style.display = 'flex';
+            modal.classList.add('active');
+            setTimeout(() => {
+                document.getElementById('registerFirstName')?.focus();
+            }, 100);
+        };
+
+        window.closeRegisterModal = function() {
+            const modal = document.getElementById('registerModal');
+            modal.classList.remove('active');
+            modal.style.display = 'none';
+            document.getElementById('registerForm')?.reset();
+            const errorDiv = document.getElementById('registerError');
+            if (errorDiv) errorDiv.style.display = 'none';
+        };
+
+        function showLoginError(message) {
+            const errorDiv = document.getElementById('loginError');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        function showRegisterError(message) {
+            const errorDiv = document.getElementById('registerError');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        // ===== GESTION DE L'UI =====
+        function updateUIForUser(userData) {
+            document.getElementById('btnOpenLogin')?.parentElement.setAttribute('style', 'display:none');
+            document.getElementById('userMenuContainer')?.setAttribute('style', 'display:block');
+            document.getElementById('userName').textContent = userData.name || userData.email;
+            
+            if (userData.role === 'admin') {
+                document.getElementById('btnAdminDashboard')?.setAttribute('style', 'display:block');
+            }
+        }
+
+        function updateUIForLogout() {
+            document.getElementById('btnOpenLogin')?.parentElement.setAttribute('style', 'display:block');
+            document.getElementById('userMenuContainer')?.setAttribute('style', 'display:none');
+            document.getElementById('btnAdminDashboard')?.setAttribute('style', 'display:none');
+            hideAllSpaces();
+        }
+
+        // ===== SYSTÈME DE NAVIGATION =====
+        const publicSections = ['accueil', 'apropos', 'services', 'reservation', 'temoignages', 'contact'];
+        const privateSections = ['adminDashboard', 'clientSpace'];
+        
+        function hideAll() {
+            // Cacher toutes les sections avec ID
+            [...publicSections, ...privateSections].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+            
+            // Cacher toutes les sections publiques sans ID (about-section, gallery)
+            document.querySelectorAll('.about-section, .gallery, .testimonials, footer').forEach(el => {
+                el.style.display = 'none';
+            });
+        }
+        
+        function showPublicSite() {
+            hideAll();
+            publicSections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = 'block';
+            });
+            
+            // Afficher toutes les sections publiques sans ID
+            document.querySelectorAll('.about-section, .gallery, .testimonials, footer').forEach(el => {
+                el.style.display = 'block';
+            });
+        }
+        
+        function hideAllSpaces() {
+            showPublicSite();
+        }
+
+        function showAdminDashboard() {
+            console.log('📊 Affichage dashboard admin');
+            hideAll();
+            const admin = document.getElementById('adminDashboard');
+            if (admin) admin.style.display = 'block';
+            window.scrollTo(0, 0);
+            // Activer l'onglet Administration par défaut
+            switchAdminTab('dashboard');
+            loadAdminData();
+        }
+
+        function showClientSpace(email) {
+            console.log('👤 Affichage espace client:', email);
+            hideAll();
+            const client = document.getElementById('clientSpace');
+            if (client) client.style.display = 'block';
+            window.scrollTo(0, 0);
+            loadClientData(email);
+        }
+
+        async function loadAdminData() {
+            console.log('📊 Chargement données admin...');
+            try {
+                const bookingsSnap = await getDocs(collection(db, 'bookings'));
+                const clientsSnap = await getDocs(collection(db, 'clients'));
+                
+                document.getElementById('statBookings').textContent = bookingsSnap.size;
+                document.getElementById('statClients').textContent = clientsSnap.size;
+                
+                const tbody = document.getElementById('adminBookingsTable');
+                tbody.innerHTML = '';
+                
+                bookingsSnap.forEach(docSnap => {
+                    const booking = docSnap.data();
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${booking.bookingNumber || docSnap.id.substring(0, 8)}</td>
+                        <td>${booking.clientName || 'N/A'}</td>
+                        <td>${booking.service || 'N/A'}</td>
+                        <td>${booking.date || 'N/A'}</td>
+                        <td><span class="status-badge status-${booking.status || 'pending'}">${booking.status || 'En attente'}</span></td>
+                        <td>
+                            <button class="btn-icon" title="Voir"><i class="fas fa-eye"></i></button>
+                            <button class="btn-icon" title="Modifier"><i class="fas fa-edit"></i></button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Erreur chargement admin:', error);
+            }
+        }
+
+        async function loadClientData(email) {
+            console.log('📊 Chargement données client:', email);
+            try {
+                const q = query(collection(db, 'bookings'), where('clientEmail', '==', email));
+                const bookingsSnap = await getDocs(q);
+                
+                const container = document.getElementById('clientBookingsGrid');
+                container.innerHTML = '';
+                
+                if (bookingsSnap.empty) {
+                    container.innerHTML = '<p>Aucune réservation pour le moment.</p>';
+                    return;
+                }
+                
+                bookingsSnap.forEach(docSnap => {
+                    const booking = docSnap.data();
+                    const card = document.createElement('div');
+                    card.className = 'booking-card';
+                    card.innerHTML = `
+                        <div class="booking-header">
+                            <span class="booking-number">${booking.bookingNumber || 'N/A'}</span>
+                            <span class="status-badge status-${booking.status || 'pending'}">${booking.status || 'En attente'}</span>
+                        </div>
+                        <h3>${booking.service || 'Service'}</h3>
+                        <p><i class="fas fa-calendar"></i> ${booking.date || 'Date à définir'}</p>
+                        <p><i class="fas fa-clock"></i> ${booking.time || 'Heure à définir'}</p>
+                        <p><i class="fas fa-euro-sign"></i> ${booking.price || 'Prix à définir'}€</p>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Erreur chargement client:', error);
+            }
+        }
+
+        // ===== ÉVÉNEMENTS =====
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🔐 Initialisation authentification...');
+
+            // Bouton connexion
+            const btnOpenLogin = document.getElementById('btnOpenLogin');
+            if (btnOpenLogin) {
+                btnOpenLogin.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    console.log('🖱️ Clic sur Connexion');
+                    openLoginModal();
+                });
+                console.log('✅ Bouton Connexion attaché');
+            } else {
+                console.error('❌ Bouton #btnOpenLogin introuvable');
+            }
+
+            // Charger les identifiants mémorisés
+            const savedEmail = localStorage.getItem('rememberedEmail');
+            if (savedEmail) {
+                document.getElementById('loginEmail').value = savedEmail;
+                document.getElementById('rememberMe').checked = true;
+            }
+
+            // Bouton "S'inscrire" depuis le modal de connexion
+            document.getElementById('btnShowRegisterModal')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeLoginModal();
+                openRegisterModal();
+            });
+
+            // Bouton "Se connecter" depuis le modal d'inscription
+            document.getElementById('btnShowLoginFromRegister')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeRegisterModal();
+                openLoginModal();
+            });
+
+            // Formulaire d'inscription
+            const btnSubmitRegister = document.getElementById('btnSubmitRegister');
+            if (btnSubmitRegister) {
+                console.log('✅ Bouton Inscription trouvé');
+                btnSubmitRegister.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    console.log('📝 Clic sur bouton inscription...');
+                    
+                    const firstName = document.getElementById('registerFirstName').value;
+                    const lastName = document.getElementById('registerLastName').value;
+                    const email = document.getElementById('registerEmail').value;
+                    const password = document.getElementById('registerPassword').value;
+                    const birthDate = document.getElementById('registerBirthDate').value;
+
+                    if (!firstName || !lastName || !email || !password || !birthDate) {
+                        showRegisterError('Veuillez remplir tous les champs requis');
+                        return;
+                    }
+
+                    if (password.length < 6) {
+                        showRegisterError('Le mot de passe doit contenir au moins 6 caractères');
+                        return;
+                    }
+
+                    try {
+                        console.log('🆕 Création compte pour:', email);
+                        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                        
+                        // Créer le document utilisateur dans Firestore
+                        await setDoc(doc(db, 'users', userCredential.user.uid), {
+                            email: email,
+                            firstName: firstName,
+                            lastName: lastName,
+                            name: `${firstName} ${lastName}`,
+                            birthDate: birthDate,
+                            role: 'client',
+                            createdAt: new Date().toISOString()
+                        });
+
+                        console.log('✅ Compte créé avec succès');
+                        
+                        // Connexion automatique
+                        currentUser = userCredential.user;
+                        currentUserData = {
+                            email: email,
+                            firstName: firstName,
+                            lastName: lastName,
+                            name: `${firstName} ${lastName}`,
+                            birthDate: birthDate,
+                            role: 'client'
+                        };
+                        
+                        closeRegisterModal();
+                        updateUIForUser(currentUserData);
+                        showClientSpace(email);
+
+                    } catch (error) {
+                        console.error('❌ Erreur inscription:', error);
+                        if (error.code === 'auth/email-already-in-use') {
+                            showRegisterError('Cet email est déjà utilisé');
+                        } else if (error.code === 'auth/invalid-email') {
+                            showRegisterError('Email invalide');
+                        } else if (error.code === 'auth/weak-password') {
+                            showRegisterError('Le mot de passe est trop faible');
+                        } else {
+                            showRegisterError('Erreur lors de l\'inscription: ' + error.message);
+                        }
+                    }
+                });
+            } else {
+                console.error('❌ Bouton #btnSubmitRegister introuvable');
+            }
+
+            // Formulaire de connexion - bouton submit
+            const btnSubmitLogin = document.getElementById('btnSubmitLogin');
+            if (btnSubmitLogin) {
+                btnSubmitLogin.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    console.log('📝 Clic sur bouton connexion...');
+                    
+                    const email = document.getElementById('loginEmail').value;
+                    const password = document.getElementById('loginPassword').value;
+                    const rememberMe = document.getElementById('rememberMe').checked;
+
+                    if (!email || !password) {
+                        showLoginError('Veuillez remplir tous les champs');
+                        return;
+                    }
+
+                    try {
+                        console.log('🔐 Tentative de connexion pour:', email);
+                        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                        console.log('✅ Connexion réussie:', userCredential.user.email);
+                        
+                        // Sauvegarder l'email si remember me activé
+                        if (rememberMe) {
+                            localStorage.setItem('rememberedEmail', email);
+                        } else {
+                            localStorage.removeItem('rememberedEmail');
+                        }
+                        
+                        const userDoc = await getDoc(doc(db, 'users', userCredential.user.uid));
+                        
+                        if (userDoc.exists()) {
+                            currentUser = userCredential.user;
+                            currentUserData = userDoc.data();
+                            
+                            closeLoginModal();
+                            updateUIForUser(currentUserData);
+                            
+                            if (currentUserData.role === 'admin') {
+                                showAdminDashboard();
+                            } else {
+                                showClientSpace(email);
+                            }
+                        } else {
+                            showLoginError('Utilisateur non trouvé dans la base de données');
+                        }
+                    } catch (error) {
+                        console.error('Erreur connexion:', error);
+                        let message = 'Erreur de connexion';
+                        if (error.code === 'auth/invalid-credential') {
+                            message = 'Email ou mot de passe incorrect';
+                        } else if (error.code === 'auth/user-not-found') {
+                            message = 'Utilisateur non trouvé';
+                        }
+                        showLoginError(message);
+                    }
+                });
+            }
+
+            // Bouton connexion Google
+            const btnGoogleLogin = document.getElementById('btnGoogleLogin');
+            if (btnGoogleLogin) {
+                btnGoogleLogin.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    console.log('🔵 Connexion Google...');
+                    
+                    const provider = new GoogleAuthProvider();
+                    provider.setCustomParameters({
+                        prompt: 'select_account'
+                    });
+                    
+                    try {
+                        const result = await signInWithPopup(auth, provider);
+                        const user = result.user;
+                        console.log('✅ Connexion Google réussie:', user.email);
+                        
+                        // Vérifier si l'utilisateur existe dans Firestore
+                        const userDoc = await getDoc(doc(db, 'users', user.uid));
+                        
+                        if (userDoc.exists()) {
+                            // Utilisateur existant
+                            currentUser = user;
+                            currentUserData = userDoc.data();
+                        } else {
+                            // Nouveau compte Google - créer l'utilisateur dans Firestore
+                            const displayNameParts = user.displayName ? user.displayName.split(' ') : ['', ''];
+                            const userData = {
+                                email: user.email,
+                                firstName: displayNameParts[0] || '',
+                                lastName: displayNameParts.slice(1).join(' ') || '',
+                                name: user.displayName || user.email,
+                                role: 'client',
+                                createdAt: new Date().toISOString(),
+                                photoURL: user.photoURL || '',
+                                provider: 'google'
+                            };
+                            
+                            await setDoc(doc(db, 'users', user.uid), userData);
+                            currentUser = user;
+                            currentUserData = userData;
+                            console.log('✅ Nouveau compte Google créé');
+                        }
+                        
+                        closeLoginModal();
+                        updateUIForUser(currentUserData);
+                        
+                        if (currentUserData.role === 'admin') {
+                            showAdminDashboard();
+                        } else {
+                            showClientSpace(user.email);
+                        }
+                        
+                    } catch (error) {
+                        console.error('❌ Erreur connexion Google:', error);
+                        if (error.code === 'auth/popup-closed-by-user') {
+                            showLoginError('Connexion annulée');
+                        } else if (error.code === 'auth/popup-blocked') {
+                            showLoginError('Popup bloquée par le navigateur');
+                        } else if (error.code === 'auth/unauthorized-domain') {
+                            showLoginError('Domaine non autorisé. Veuillez ajouter votre domaine dans Firebase Console > Authentication > Settings > Authorized domains');
+                        } else {
+                            showLoginError('Erreur de connexion avec Google: ' + (error.message || 'Erreur inconnue'));
+                        }
+                    }
+                });
+            }
+
+            // Bouton déconnexion
+            const btnLogout = document.getElementById('btnLogout');
+            if (btnLogout) {
+                btnLogout.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    try {
+                        await signOut(auth);
+                        currentUser = null;
+                        currentUserData = null;
+                        updateUIForLogout();
+                        console.log('✅ Déconnexion réussie');
+                    } catch (error) {
+                        console.error('Erreur déconnexion:', error);
+                    }
+                });
+            }
+
+            // Bouton Mon Espace
+            const btnMySpace = document.getElementById('btnMySpace');
+            if (btnMySpace) {
+                btnMySpace.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (currentUserData) {
+                        if (currentUserData.role === 'admin') {
+                            showAdminDashboard();
+                        } else if (currentUserData.role === 'client') {
+                            showClientSpace(currentUser.email);
+                        }
+                    }
+                });
+            }
+
+            // Bouton Administration
+            const btnAdminDashboard = document.getElementById('btnAdminDashboard');
+            if (btnAdminDashboard) {
+                btnAdminDashboard.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (currentUserData && currentUserData.role === 'admin') {
+                        showAdminDashboard();
+                    }
+                });
+            }
+
+            // Menu dropdown
+            const btnUserMenu = document.getElementById('btnUserMenu');
+            if (btnUserMenu) {
+                btnUserMenu.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const dropdown = document.getElementById('userDropdown');
+                    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('#userMenuContainer')) {
+                        document.getElementById('userDropdown').style.display = 'none';
+                    }
+                });
+            }
+
+            // Surveillance de l'état d'authentification
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    console.log('✅ Utilisateur connecté:', user.email);
+                    try {
+                        const userDoc = await getDoc(doc(db, 'users', user.uid));
+                        if (userDoc.exists()) {
+                            currentUser = user;
+                            currentUserData = userDoc.data();
+                            updateUIForUser(currentUserData);
+                        }
+                    } catch (error) {
+                        console.error('Erreur récupération données utilisateur:', error);
+                    }
+                } else {
+                    console.log('👤 Aucun utilisateur connecté');
+                    updateUIForLogout();
+                }
+            });
+
+            console.log('✅ Authentification initialisée');
+        });
+
+        // Exposer globalement pour les tabs
+        window.switchAdminTab = function(tab) {
+            console.log('🔄 Changement onglet admin:', tab);
+            
+            // Gérer l'état actif des boutons
+            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+            if (event && event.target) event.target.classList.add('active');
+            
+            // Masquer tous les contenus d'onglets
+            document.getElementById('adminTabSite').style.display = 'none';
+            document.getElementById('adminTabDashboard').style.display = 'none';
+            
+            // Afficher le bon contenu
+            if (tab === 'site') {
+                document.getElementById('adminTabSite').style.display = 'block';
+            } else if (tab === 'dashboard') {
+                document.getElementById('adminTabDashboard').style.display = 'block';
+            }
+        };
+
+        window.switchClientTab = function(tab) {
+            console.log('🔄 Changement onglet client:', tab);
+            document.querySelectorAll('.client-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.client-tab-content').forEach(c => c.style.display = 'none');
+            event.target.classList.add('active');
+            document.getElementById('clientTab' + tab.charAt(0).toUpperCase() + tab.slice(1)).style.display = 'block';
+        };
+    </script>
+
+    <!-- Script pour les interactions de base du site -->
+    <script>
+        // Navigation mobile
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (menuToggle && navMenu) {
+                menuToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                });
+            }
+
+            // Smooth scroll pour les liens de navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                if (anchor.getAttribute('href').length > 1) {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target && target.style.display !== 'none') {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            if (navMenu) navMenu.classList.remove('active');
+                            if (menuToggle) menuToggle.classList.remove('active');
+                        }
+                    });
+                }
+            });
+
+            // Header transparent/solide au scroll
+            const header = document.querySelector('.header');
+            let lastScroll = 0;
+            
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                
+                if (currentScroll > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                lastScroll = currentScroll;
+            });
+
+            // Animation au scroll (fade in)
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.service-card, .testimonial-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+
+            // ===== CALENDRIER =====
+            const calendarEl = document.getElementById('calendar');
+            
+            function initializeCalendar() {
+                if (typeof FullCalendar === 'undefined') {
+                    console.log('⏳ FullCalendar pas encore chargé, réessai...');
+                    setTimeout(initializeCalendar, 500);
+                    return;
+                }
+                
+                console.log('✅ FullCalendar disponible, initialisation...');
+                
+                const calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    locale: 'fr',
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth'
+                    },
+                    buttonText: {
+                        today: "Aujourd'hui",
+                        month: 'Mois'
+                    },
+                    firstDay: 1,
+                    events: [],
+                    dateClick: function(info) {
+                        console.log('📅 Date sélectionnée:', info.dateStr);
+                        // Ici vous pouvez ouvrir un modal de réservation
+                        alert('Réservation pour le ' + info.dateStr);
+                    },
+                    eventClick: function(info) {
+                        console.log('📌 Événement cliqué:', info.event.title);
+                    }
+                });
+                
+                calendar.render();
+                console.log('✅ Calendrier rendu avec succès');
+            }
+            
+            if (calendarEl) {
+                console.log('📅 Initialisation du calendrier...');
+                initializeCalendar();
+            }
+
+            console.log('✅ Site initialisé');
+        });
+    </script>
 </body>
 </html>
