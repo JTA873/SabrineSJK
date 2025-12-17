@@ -2,8 +2,11 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="description" content="Sabrine SJK - Thérapeute Énergétique. Reiki Usui, Lahochi, Magnétisme, Soins Intuitifs.">
+    <meta name="theme-color" content="#8B7355">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>Sabrine SJK - Thérapeute Énergétique</title>
     
     <link rel="stylesheet" href="styles.css">
@@ -140,216 +143,180 @@
                 <p class="section-subtitle">Choisissez le soin qui vous correspond</p>
             </div>
             
+            <!-- Séances Intuitives -->
             <div class="service-category">
                 <h3 class="category-title"><i class="fas fa-star"></i> Séances Intuitives Guidées</h3>
                 <div class="services-grid">
-                    <div class="service-card clickable" onclick="openServiceModal('intuitif-adulte')">
+                    <div class="service-card" onclick="openServiceModal('intuitif-adulte')">
                         <div class="service-icon"><i class="fas fa-user"></i></div>
                         <h4>Adultes</h4>
-                        <div class="price-tag">
-                            <span>Présentiel: 60€</span>
-                            <span style="font-size: 0.9em; opacity: 0.8;">Distanciel: 50€</span>
+                        <div class="price-group">
+                            <div class="price-main">60€</div>
+                            <div class="price-sub">50€ distanciel</div>
                         </div>
-                        <p class="service-duration"><i class="fas fa-clock"></i> env. 1h</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
-                        </div>
+                        <p class="service-time">env. 1h</p>
                     </div>
                     
-                    <div class="service-card clickable" onclick="openServiceModal('intuitif-enfant')">
+                    <div class="service-card" onclick="openServiceModal('intuitif-enfant')">
                         <div class="service-icon"><i class="fas fa-child"></i></div>
                         <h4>Enfants (-12 ans)</h4>
-                        <div class="price-tag">
-                            <span>Présentiel: 40€</span>
-                            <span style="font-size: 0.9em; opacity: 0.8;">Distanciel: 30€</span>
+                        <div class="price-group">
+                            <div class="price-main">40€</div>
+                            <div class="price-sub">30€ distanciel</div>
                         </div>
-                        <p class="service-duration"><i class="fas fa-clock"></i> Durée adaptée</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
-                        </div>
+                        <p class="service-time">Durée adaptée</p>
                     </div>
                     
-                    <div class="service-card clickable" onclick="openServiceModal('intuitif-animal')">
+                    <div class="service-card" onclick="openServiceModal('intuitif-animal')">
                         <div class="service-icon"><i class="fas fa-paw"></i></div>
                         <h4>Animaux</h4>
-                        <div class="price-tag">
-                            <span>Présentiel: 40€</span>
-                            <span style="font-size: 0.9em; opacity: 0.8;">Distanciel: 30€</span>
+                        <div class="price-group">
+                            <div class="price-main">40€</div>
+                            <div class="price-sub">30€ distanciel</div>
                         </div>
-                        <p class="service-duration"><i class="fas fa-clock"></i> Durée adaptée</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
-                        </div>
+                        <p class="service-time">Durée adaptée</p>
                     </div>
                 </div>
             </div>
 
+            <!-- Reiki & Lahochi -->
             <div class="service-category">
                 <h3 class="category-title"><i class="fas fa-hands"></i> Reiki & Lahochi</h3>
-                <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-light);">💫 Profonde détente, rééquilibrage énergétique, libération émotionnelle, amélioration du sommeil et clarté mentale</p>
                 <div class="services-grid">
-                    <div class="service-card clickable" onclick="openServiceModal('reiki')">
+                    <div class="service-card" onclick="openServiceModal('reiki')">
                         <div class="service-icon"><i class="fas fa-spa"></i></div>
-                        <h4>Séance Reiki ou Lahochi</h4>
-                        <div class="price-tag">60€</div>
-                        <p class="service-duration"><i class="fas fa-clock"></i> Reiki: 1h-1h15 / Lahochi: env. 1h</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
-                        </div>
+                        <h4>Reiki ou Lahochi</h4>
+                        <div class="price-main">60€</div>
+                        <p class="service-time">1h à 1h15</p>
                     </div>
                     
-                    <div class="service-card clickable package" onclick="openServiceModal('forfait-reiki')">
-                        <div class="badge-promo">FORFAIT</div>
+                    <div class="service-card featured" onclick="openServiceModal('forfait-reiki')">
+                        <div class="badge">FORFAIT</div>
                         <div class="service-icon"><i class="fas fa-gift"></i></div>
-                        <h4>Forfait 4 Séances</h4>
-                        <div class="price-tag">
-                            <span class="price-old">240€</span>
-                            <span class="price-new">210€</span>
-                        </div>
-                        <p style="font-size: 0.9em; opacity: 0.9; margin-top: 0.5rem;">💳 Paiement en 3 ou 4 fois possible</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
+                        <h4>4 Séances</h4>
+                        <div class="price-group">
+                            <div class="price-old">240€</div>
+                            <div class="price-main">210€</div>
+                            <div class="price-sub">Paiement 3-4x</div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Soins Énergétiques -->
             <div class="service-category">
-                <h3 class="category-title"><i class="fas fa-om"></i> Soins Énergétiques Spécialisés</h3>
+                <h3 class="category-title"><i class="fas fa-om"></i> Soins Énergétiques</h3>
                 <div class="services-grid">
-                    <div class="service-card clickable" onclick="openServiceModal('seance-sonore')">
+                    <div class="service-card" onclick="openServiceModal('seance-sonore')">
                         <div class="service-icon"><i class="fas fa-music"></i></div>
-                        <h4>Séance Sonore Énergétique</h4>
-                        <div class="price-tag">60€</div>
-                        <p class="service-duration"><i class="fas fa-clock"></i> 1h</p>
-                        <p style="font-size: 0.85em; margin-top: 0.5rem;">🌀 Travail vibratoire sur les 7 chakras</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
-                        </div>
+                        <h4>Séance Sonore</h4>
+                        <div class="price-main">60€</div>
+                        <p class="service-time">1h</p>
+                        <p class="service-desc">Travail vibratoire chakras</p>
                     </div>
 
-                    <div class="service-card clickable" onclick="openServiceModal('magnetisme-cranien')">
+                    <div class="service-card" onclick="openServiceModal('magnetisme-cranien')">
                         <div class="service-icon"><i class="fas fa-brain"></i></div>
-                        <h4>Magnétisme Crânien + Chakras</h4>
-                        <div class="price-tag">60€</div>
-                        <p class="service-duration"><i class="fas fa-clock"></i> 1h</p>
-                        <p style="font-size: 0.85em; margin-top: 0.5rem;">🌿 Excellent pour migraines et anxiété</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
-                        </div>
+                        <h4>Magnétisme Crânien</h4>
+                        <div class="price-main">60€</div>
+                        <p class="service-time">1h</p>
+                        <p class="service-desc">Migraines, anxiété</p>
                     </div>
 
-                    <div class="service-card clickable" onclick="openServiceModal('micro-massage')">
+                    <div class="service-card" onclick="openServiceModal('micro-massage')">
                         <div class="service-icon"><i class="fas fa-hand-holding-heart"></i></div>
-                        <h4>Micro-Massage Énergétique</h4>
-                        <div class="price-tag">60€</div>
-                        <p class="service-duration"><i class="fas fa-clock"></i> 1h</p>
-                        <p style="font-size: 0.85em; margin-top: 0.5rem;">💆‍♀️ Tête, visage, ventre, dos</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
-                        </div>
+                        <h4>Micro-Massage</h4>
+                        <div class="price-main">60€</div>
+                        <p class="service-time">1h</p>
+                        <p class="service-desc">Tête, visage, dos, ventre</p>
                     </div>
                 </div>
             </div>
 
+            <!-- Accompagnements -->
             <div class="service-category">
-                <h3 class="category-title"><i class="fas fa-heart"></i> Accompagnements Holistiques Profonds</h3>
-                <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-light);">💖 Pour blessures émotionnelles, anxiété, estime de soi, transgénérationnel, deuil, séparation...</p>
+                <h3 class="category-title"><i class="fas fa-heart"></i> Accompagnements Profonds</h3>
                 <div class="services-grid">
-                    <div class="service-card clickable" onclick="openServiceModal('accompagnement-solo')">
+                    <div class="service-card" onclick="openServiceModal('accompagnement-solo')">
                         <div class="service-icon"><i class="fas fa-leaf"></i></div>
                         <h4>Séance Seule</h4>
-                        <div class="price-tag">60€</div>
-                        <p class="service-duration"><i class="fas fa-clock"></i> 1h</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
-                        </div>
+                        <div class="price-main">60€</div>
+                        <p class="service-time">1h</p>
                     </div>
 
-                    <div class="service-card clickable package" onclick="openServiceModal('accompagnement-forfait')">
-                        <div class="badge-promo">FORFAIT</div>
+                    <div class="service-card featured" onclick="openServiceModal('accompagnement-forfait')">
+                        <div class="badge">FORFAIT</div>
                         <div class="service-icon"><i class="fas fa-gifts"></i></div>
-                        <h4>Forfait 3 Séances</h4>
-                        <div class="price-tag">
-                            <span class="price-old">180€</span>
-                            <span class="price-new">160€</span>
-                        </div>
-                        <p style="font-size: 0.9em; opacity: 0.9; margin-top: 0.5rem;">💳 Paiement en 3 ou 4 fois possible</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
+                        <h4>3 Séances</h4>
+                        <div class="price-group">
+                            <div class="price-old">180€</div>
+                            <div class="price-main">160€</div>
+                            <div class="price-sub">Paiement 3-4x</div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Séances Spécifiques -->
             <div class="service-category">
                 <h3 class="category-title"><i class="fas fa-plus-circle"></i> Séances Spécifiques</h3>
                 <div class="services-grid">
-                    <div class="service-card clickable" onclick="openServiceModal('verrue')">
+                    <div class="service-card" onclick="openServiceModal('verrue')">
                         <div class="service-icon"><i class="fas fa-hand-sparkles"></i></div>
-                        <h4>Traitement Verrue</h4>
-                        <div class="price-tag">60€</div>
-                        <p class="service-duration"><i class="fas fa-clock"></i> Forfait complet (3 phases)</p>
-                        <p style="font-size: 0.85em; margin-top: 0.5rem;">👣 Magnétisme ciblé + énergétique</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
-                        </div>
+                        <h4>Verrue</h4>
+                        <div class="price-main">60€</div>
+                        <p class="service-desc">Forfait complet 3 phases</p>
                     </div>
 
-                    <div class="service-card clickable" onclick="openServiceModal('accompagnement-operation')">
+                    <div class="service-card" onclick="openServiceModal('accompagnement-operation')">
                         <div class="service-icon"><i class="fas fa-hospital"></i></div>
-                        <h4>Accompagnement Opération</h4>
-                        <div class="price-tag">70€</div>
-                        <p class="service-duration"><i class="fas fa-clock"></i> 3 séances (env. 1h30)</p>
-                        <p style="font-size: 0.85em; margin-top: 0.5rem;">Avant, pendant et après</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
-                        </div>
+                        <h4>Accomp. Opération</h4>
+                        <div class="price-main">70€</div>
+                        <p class="service-desc">Avant, pendant, après</p>
                     </div>
 
-                    <div class="service-card clickable" onclick="openServiceModal('accompagnement-chimio')">
+                    <div class="service-card" onclick="openServiceModal('accompagnement-chimio')">
                         <div class="service-icon"><i class="fas fa-hands-helping"></i></div>
-                        <h4>Accompagnement Chimio/Radio</h4>
-                        <div class="price-tag">À partir de 70€</div>
-                        <p class="service-duration"><i class="fas fa-clock"></i> 3 séances (1h-1h30)</p>
-                        <p style="font-size: 0.85em; margin-top: 0.5rem;">Coupeur de feu inclus</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
-                        </div>
+                        <h4>Chimio/Radio</h4>
+                        <div class="price-main">70€+</div>
+                        <p class="service-desc">Coupeur feu inclus</p>
                     </div>
 
-                    <div class="service-card clickable" onclick="openServiceModal('coupeur-feu')">
+                    <div class="service-card" onclick="openServiceModal('coupeur-feu')">
                         <div class="service-icon"><i class="fas fa-fire-extinguisher"></i></div>
                         <h4>Coupeur de Feu</h4>
-                        <div class="price-tag">Don libre (min. 30€)</div>
-                        <p class="service-duration"><i class="fas fa-clock"></i> Immédiat</p>
-                        <p style="font-size: 0.85em; margin-top: 0.5rem;">🔥 Brûlures, radiothérapie, inflammations</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
-                        </div>
+                        <div class="price-main">Don libre</div>
+                        <p class="service-desc">Min. 30€</p>
                     </div>
 
-                    <div class="service-card clickable" onclick="openServiceModal('nettoyage-lieu')">
+                    <div class="service-card" onclick="openServiceModal('nettoyage-lieu')">
                         <div class="service-icon"><i class="fas fa-home"></i></div>
-                        <h4>Nettoyage Énergétique de Lieux</h4>
-                        <div class="price-tag">100€</div>
-                        <p class="service-duration"><i class="fas fa-clock"></i> Sur place</p>
-                        <p style="font-size: 0.85em; margin-top: 0.5rem;">🏠 Libération énergies lourdes</p>
-                        <div class="service-footer">
-                            <span class="service-action">Réserver <i class="fas fa-arrow-right"></i></span>
-                        </div>
+                        <h4>Nettoyage Lieux</h4>
+                        <div class="price-main">100€</div>
+                        <p class="service-desc">Harmonisation énergétique</p>
                     </div>
                 </div>
             </div>
 
-            <div class="service-info-box" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 2rem; border-radius: 15px; margin-top: 3rem; text-align: center;">
-                <h3 style="margin-bottom: 1rem;"><i class="fas fa-info-circle"></i> Informations Importantes</h3>
-                <div style="display: grid; gap: 1rem; text-align: left; max-width: 800px; margin: 0 auto;">
-                    <p><i class="fas fa-credit-card"></i> <strong>Paiement en plusieurs fois possible</strong> pour tous les forfaits (3 à 4 fois)</p>
-                    <p><i class="fas fa-car"></i> <strong>Déplacements :</strong> 1€/km aller-retour</p>
-                    <p><i class="fas fa-phone"></i> <strong>Uniquement sur rendez-vous</strong> - Contactez-moi au 07 86 99 69 50</p>
-                    <p><i class="fas fa-heart"></i> <strong>Important :</strong> Mes séances accompagnent et soutiennent le bien-être, mais ne remplacent jamais un avis ou suivi médical. Elles agissent en complément, dans le respect du corps, de l'esprit et du chemin de chacun.</p>
+            <!-- Infos pratiques -->
+            <div class="info-box">
+                <div class="info-item">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Paiement 3-4x sur forfaits</span>
                 </div>
+                <div class="info-item">
+                    <i class="fas fa-car"></i>
+                    <span>Déplacement 1€/km A/R</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <span>Sur RDV : <span id="heroPhone">Chargement...</span></span>
+                </div>
+            </div>
+
+            <div class="disclaimer">
+                <i class="fas fa-heart"></i>
+                <p>Mes séances accompagnent et soutiennent le bien-être, mais ne remplacent jamais un avis ou suivi médical. Elles agissent en complément, dans le respect du corps, de l'esprit et du chemin de chacun.</p>
             </div>
         </div>
     </section>
@@ -423,12 +390,46 @@
                         </div>
                         
                         <div class="form-group">
+                            <label for="quick-location"><i class="fas fa-map-marker-alt"></i> Localisation de la séance *</label>
+                            <select id="quick-location" name="location" required>
+                                <option value="">Sélectionnez...</option>
+                                <option value="cabinet">Au cabinet (180 rue des mimosas, Beauvoisin)</option>
+                                <option value="domicile">À mon domicile</option>
+                                <option value="distance">À distance (visio/téléphone)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" id="quick-address-group" style="display: none;">
+                            <label for="quick-address"><i class="fas fa-home"></i> Votre adresse complète *</label>
+                            <input type="text" id="quick-address" name="address" placeholder="Ex: 10 rue de la République, 30000 Nîmes">
+                            
+                            <label for="quick-distance" style="margin-top: 1rem;"><i class="fas fa-road"></i> Distance aller-retour (km) *</label>
+                            <input type="number" id="quick-distance" name="distance" placeholder="Ex: 20" min="1" step="1" style="margin-bottom: 0.5rem;">
+                            <small style="color: var(--text-light); font-size: 0.85rem; display: block;">
+                                <i class="fas fa-info-circle"></i> Frais de déplacement : 1€/km aller-retour
+                            </small>
+                        </div>
+                        
+                        <div id="quick-travel-info" class="travel-info" style="display: none;">
+                            <div class="travel-info-content">
+                                <i class="fas fa-car"></i>
+                                <div class="travel-details">
+                                    <strong>Frais de déplacement</strong>
+                                    <p id="quick-travel-cost" style="font-size: 1.2rem; color: var(--primary-color); font-weight: 600; margin: 0;"></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Champ caché pour stocker le coût du déplacement -->
+                        <input type="hidden" id="quick-travel-cost-value" value="0">
+                        
+                        <div class="form-group">
                             <label for="quick-message"><i class="fas fa-comment"></i> Message (optionnel)</label>
                             <textarea id="quick-message" name="message" rows="3" placeholder="Précisez votre demande..."></textarea>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fas fa-check"></i> Envoyer la demande
+                        <button type="button" class="btn btn-primary btn-block" onclick="showQuickBookingSummary()">
+                            <i class="fas fa-eye"></i> Voir le récapitulatif
                         </button>
                     </form>
                     
@@ -436,11 +437,11 @@
                         <p style="text-align: center; margin: 20px 0 10px; font-weight: 600; color: var(--text-color);">Ou contactez-moi directement :</p>
                         <div class="contact-option">
                             <i class="fas fa-phone"></i>
-                            <a href="tel:0612345678">06 12 34 56 78</a>
+                            <a href="tel:0612345678" id="modalPhoneLink"><span id="modalPhone">Chargement...</span></a>
                         </div>
                         <div class="contact-option">
                             <i class="fas fa-envelope"></i>
-                            <a href="mailto:contact@sabrinesjk.fr">contact@sabrinesjk.fr</a>
+                            <a href="mailto:contact@sabrinesjk.fr" id="modalEmailLink"><span id="modalEmail">Chargement...</span></a>
                         </div>
                     </div>
                 </div>
@@ -488,13 +489,8 @@
                         <i class="fas fa-phone"></i>
                     </div>
                     <h3>Téléphone</h3>
-                    <p id="contactPhone">06 12 34 56 78</p>
-                    <a href="tel:0612345678" class="btn btn-secondary">Appeler maintenant</a>
-                </div>
-                
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
+                <p id="contactPhone">Chargement...</p>
+                <a href="tel:0612345678" id="contactPhoneLink" class="btn btn-secondary">Appeler maintenant</a>
                     </div>
                     <h3>Email</h3>
                     <p id="contactEmail">contact@sabrinesjk.fr</p>
@@ -621,15 +617,126 @@
                     </div>
                     
                     <div class="form-group">
+                        <label for="booking-location"><i class="fas fa-map-marker-alt"></i> Localisation de la séance *</label>
+                        <select id="booking-location" name="location" required>
+                            <option value="">Sélectionnez...</option>
+                            <option value="cabinet">Au cabinet (180 rue des mimosas, Beauvoisin)</option>
+                            <option value="domicile">À mon domicile</option>
+                            <option value="distance">À distance (visio/téléphone)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="booking-address-group" style="display: none;">
+                        <label for="booking-address"><i class="fas fa-home"></i> Votre adresse complète *</label>
+                        <input type="text" id="booking-address" name="address" placeholder="Ex: 10 rue de la République, 30000 Nîmes">
+                        
+                        <label for="booking-distance" style="margin-top: 1rem;"><i class="fas fa-road"></i> Distance aller-retour (km) *</label>
+                        <input type="number" id="booking-distance" name="distance" placeholder="Ex: 20" min="1" step="1" style="margin-bottom: 0.5rem;">
+                        <small style="color: var(--text-light); font-size: 0.85rem; display: block;">
+                            <i class="fas fa-info-circle"></i> Frais de déplacement : 1€/km aller-retour
+                        </small>
+                    </div>
+                    
+                    <div id="booking-travel-info" class="travel-info" style="display: none;">
+                        <div class="travel-info-content">
+                            <i class="fas fa-car"></i>
+                            <div class="travel-details">
+                                <strong>Frais de déplacement</strong>
+                                <p id="booking-travel-cost" style="font-size: 1.2rem; color: var(--primary-color); font-weight: 600; margin: 0;"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Champ caché pour stocker le coût du déplacement -->
+                    <input type="hidden" id="booking-travel-cost-value" value="0">
+                    
+                    <div class="form-group">
                         <label for="booking-message"><i class="fas fa-comment"></i> Message (optionnel)</label>
                         <textarea id="booking-message" name="message" rows="4" placeholder="Précisez votre demande..."></textarea>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fas fa-check"></i> Confirmer la réservation
+                    <button type="button" class="btn btn-primary btn-block" onclick="showBookingSummary()">
+                        <i class="fas fa-eye"></i> Voir le récapitulatif
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal Récapitulatif Réservation -->
+    <div id="bookingSummaryModal" class="modal">
+        <div class="modal-content modal-medium">
+            <span class="modal-close" onclick="closeBookingSummary()">&times;</span>
+            <div class="summary-header">
+                <h2><i class="fas fa-clipboard-check"></i> Récapitulatif de votre réservation</h2>
+                <p>Vérifiez les détails avant de confirmer</p>
+            </div>
+            
+            <div class="summary-content">
+                <div class="summary-section">
+                    <h3><i class="fas fa-spa"></i> Prestation</h3>
+                    <div class="summary-item">
+                        <span id="summary-service-name"></span>
+                        <span id="summary-service-price" class="price-tag"></span>
+                    </div>
+                </div>
+                
+                <div class="summary-section">
+                    <h3><i class="fas fa-user"></i> Vos informations</h3>
+                    <p><strong>Nom :</strong> <span id="summary-client-name"></span></p>
+                    <p><strong>Email :</strong> <span id="summary-email"></span></p>
+                    <p><strong>Téléphone :</strong> <span id="summary-phone"></span></p>
+                </div>
+                
+                <div class="summary-section">
+                    <h3><i class="fas fa-calendar-alt"></i> Date et heure</h3>
+                    <p><strong>Date :</strong> <span id="summary-date"></span></p>
+                    <p><strong>Heure :</strong> <span id="summary-time"></span></p>
+                </div>
+                
+                <div class="summary-section">
+                    <h3><i class="fas fa-map-marker-alt"></i> Localisation</h3>
+                    <p id="summary-location-text"></p>
+                    <p id="summary-address-text" style="display: none;"></p>
+                </div>
+                
+                <div class="summary-section" id="summary-travel-section" style="display: none;">
+                    <h3><i class="fas fa-car"></i> Frais de déplacement</h3>
+                    <div class="summary-item">
+                        <span id="summary-travel-details"></span>
+                        <span id="summary-travel-price" class="price-tag"></span>
+                    </div>
+                </div>
+                
+                <div class="summary-section" id="summary-message-section" style="display: none;">
+                    <h3><i class="fas fa-comment"></i> Votre message</h3>
+                    <p id="summary-message-text" style="font-style: italic; color: var(--text-color);"></p>
+                </div>
+                
+                <div class="summary-total">
+                    <div class="total-line">
+                        <span>Prestation</span>
+                        <span id="total-service-price"></span>
+                    </div>
+                    <div class="total-line" id="total-travel-line" style="display: none;">
+                        <span>Frais de déplacement</span>
+                        <span id="total-travel-price"></span>
+                    </div>
+                    <div class="total-line total-ttc">
+                        <strong>Total TTC</strong>
+                        <strong id="total-ttc-price"></strong>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="summary-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeBookingSummary()">
+                    <i class="fas fa-times"></i> Annuler
+                </button>
+                <button type="button" class="btn btn-primary" onclick="confirmAndSendBooking()">
+                    <i class="fas fa-paper-plane"></i> Confirmer et envoyer
+                </button>
+            </div>
         </div>
     </div>
 
@@ -2240,6 +2347,7 @@
     <!-- Scripts -->
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/locales/fr.js'></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -2261,6 +2369,11 @@
 
         let currentUser = null;
         let currentUserData = null;
+        
+        // Initialisation EmailJS - DÉSACTIVÉ
+        // (function(){
+        //     emailjs.init("YOUR_PUBLIC_KEY"); // À remplacer par votre clé publique EmailJS
+        // })();
 
         // ===== MODALS =====
         window.openLoginModal = () => {
@@ -2283,18 +2396,35 @@
             document.getElementById('registerError').style.display = 'none';
         };
 
-        // Services mapping
+        // Services mapping complet
         const servicesData = {
-            'intuitif-adulte': { name: 'Séance Intuitive Adulte', price: 60, duration: '1h' },
-            'intuitif-enfant': { name: 'Séance Intuitive Enfant', price: 40, duration: '45min' },
-            'intuitif-animal': { name: 'Séance Intuitive Animal', price: 40, duration: 'Variable' },
-            'reiki': { name: 'Séance Reiki ou Lahochi', price: 60, duration: '1h-1h15' },
-            'forfait-reiki': { name: 'Forfait 3 Séances Reiki', price: 160, duration: '3x1h' }
+            'intuitif-adulte': { name: 'Séance Intuitive Adulte', price: 60, priceDistance: 50, duration: '1h' },
+            'intuitif-enfant': { name: 'Séance Intuitive Enfant', price: 40, priceDistance: 30, duration: '45min' },
+            'intuitif-animal': { name: 'Séance Intuitive Animal', price: 40, priceDistance: 30, duration: 'Variable' },
+            'reiki': { name: 'Reiki ou Lahochi', price: 60, duration: '1h-1h15' },
+            'forfait-reiki': { name: 'Forfait 4 Séances Reiki', price: 210, oldPrice: 240, duration: '4x1h' },
+            'seance-sonore': { name: 'Séance Sonore', price: 60, duration: '1h' },
+            'magnetisme-cranien': { name: 'Magnétisme Crânien', price: 60, duration: '1h' },
+            'micro-massage': { name: 'Micro-Massage', price: 60, duration: '1h' },
+            'accompagnement-solo': { name: 'Accompagnement - Séance Seule', price: 60, duration: '1h' },
+            'accompagnement-forfait': { name: 'Accompagnement - Forfait 3 Séances', price: 160, oldPrice: 180, duration: '3x1h' },
+            'verrue': { name: 'Traitement Verrue', price: 60, duration: '3 phases' },
+            'accompagnement-operation': { name: 'Accompagnement Opération', price: 70, duration: 'Variable' },
+            'accompagnement-chimio': { name: 'Accompagnement Chimio/Radio', price: 70, duration: 'Variable' },
+            'coupeur-feu': { name: 'Coupeur de Feu', price: 30, priceType: 'minimum', duration: 'Variable' },
+            'nettoyage-lieu': { name: 'Nettoyage Énergétique de Lieux', price: 100, duration: 'Variable' }
         };
+        
+        // Variable globale pour stocker les données de réservation en cours
+        let currentBookingData = {};
 
         window.openServiceModal = (serviceId) => {
             const service = servicesData[serviceId];
             if (!service) return;
+            
+            // Stocker l'ID du service pour utilisation ultérieure
+            currentBookingData.serviceId = serviceId;
+            currentBookingData.service = service;
             
             document.getElementById('bookingServiceName').textContent = `${service.name} - ${service.price}€`;
             document.getElementById('bookingModal').style.display = 'flex';
@@ -2314,6 +2444,219 @@
         window.closeBookingModal = () => {
             document.getElementById('bookingModal').style.display = 'none';
             document.getElementById('bookingForm').reset();
+            document.getElementById('booking-address-group').style.display = 'none';
+            document.getElementById('booking-travel-info').style.display = 'none';
+        };
+        
+        // Fonction pour afficher le récapitulatif de réservation
+        window.showBookingSummary = () => {
+            // Validation des champs requis
+            const firstName = document.getElementById('booking-firstname').value.trim();
+            const lastName = document.getElementById('booking-lastname').value.trim();
+            const email = document.getElementById('booking-email').value.trim();
+            const phone = document.getElementById('booking-phone').value.trim();
+            const date = document.getElementById('booking-date').value;
+            const time = document.getElementById('booking-time').value;
+            const location = document.getElementById('booking-location').value;
+            
+            if (!firstName || !lastName || !email || !phone || !date || !time || !location) {
+                alert('⚠️ Veuillez remplir tous les champs obligatoires');
+                return;
+            }
+            
+            if (location === 'domicile') {
+                if (!document.getElementById('booking-address').value.trim()) {
+                    alert('⚠️ Veuillez renseigner votre adresse pour une séance à domicile');
+                    return;
+                }
+                if (!document.getElementById('booking-distance').value || parseFloat(document.getElementById('booking-distance').value) <= 0) {
+                    alert('⚠️ Veuillez renseigner la distance en km aller-retour');
+                    return;
+                }
+            }
+            
+            // Collecter toutes les données
+            const address = document.getElementById('booking-address').value.trim();
+            const distanceKm = location === 'domicile' ? parseFloat(document.getElementById('booking-distance').value) : 0;
+            const message = document.getElementById('booking-message').value.trim();
+            const service = currentBookingData.service;
+            
+            // Calculer le prix de base
+            let servicePrice = service.price;
+            if (location === 'distance' && service.priceDistance) {
+                servicePrice = service.priceDistance;
+            }
+            
+            // Calculer les frais de déplacement
+            let travelCost = 0;
+            let travelDetails = '';
+            if (location === 'domicile' && distanceKm > 0) {
+                travelCost = Math.round(distanceKm);
+                travelDetails = `${distanceKm} km aller-retour`;
+            }
+            
+            // Stocker les données
+            currentBookingData = {
+                ...currentBookingData,
+                firstName,
+                lastName,
+                email,
+                phone,
+                date,
+                time,
+                location,
+                address,
+                message,
+                servicePrice,
+                travelCost,
+                travelDetails
+            };
+            
+            // Remplir le modal de récapitulatif
+            document.getElementById('summary-service-name').textContent = service.name;
+            document.getElementById('summary-service-price').textContent = servicePrice + '€';
+            document.getElementById('summary-client-name').textContent = `${firstName} ${lastName}`;
+            document.getElementById('summary-email').textContent = email;
+            document.getElementById('summary-phone').textContent = phone;
+            
+            // Formater la date en français
+            const dateObj = new Date(date + 'T00:00:00');
+            const dateFormatted = dateObj.toLocaleDateString('fr-FR', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            document.getElementById('summary-date').textContent = dateFormatted;
+            document.getElementById('summary-time').textContent = time;
+            
+            // Localisation
+            let locationText = '';
+            if (location === 'cabinet') {
+                locationText = '📍 Au cabinet (180 rue des mimosas, Beauvoisin)';
+            } else if (location === 'domicile') {
+                locationText = '📍 À votre domicile';
+                document.getElementById('summary-address-text').textContent = address;
+                document.getElementById('summary-address-text').style.display = 'block';
+            } else {
+                locationText = '📍 À distance (visio/téléphone)';
+            }
+            document.getElementById('summary-location-text').textContent = locationText;
+            
+            // Frais de déplacement
+            if (travelCost > 0) {
+                document.getElementById('summary-travel-section').style.display = 'block';
+                document.getElementById('summary-travel-details').textContent = travelDetails;
+                document.getElementById('summary-travel-price').textContent = travelCost + '€';
+                document.getElementById('total-travel-line').style.display = 'flex';
+                document.getElementById('total-travel-price').textContent = travelCost + '€';
+            } else {
+                document.getElementById('summary-travel-section').style.display = 'none';
+                document.getElementById('total-travel-line').style.display = 'none';
+            }
+            
+            // Message
+            if (message) {
+                document.getElementById('summary-message-section').style.display = 'block';
+                document.getElementById('summary-message-text').textContent = message;
+            } else {
+                document.getElementById('summary-message-section').style.display = 'none';
+            }
+            
+            // Total
+            const totalTTC = servicePrice + travelCost;
+            document.getElementById('total-service-price').textContent = servicePrice + '€';
+            document.getElementById('total-ttc-price').textContent = totalTTC + '€';
+            
+            // Afficher le modal
+            document.getElementById('bookingSummaryModal').style.display = 'flex';
+        };
+        
+        window.closeBookingSummary = () => {
+            document.getElementById('bookingSummaryModal').style.display = 'none';
+        };
+        
+        // Fonction similaire pour le quick booking
+        window.showQuickBookingSummary = () => {
+            // Rediriger vers showBookingSummary en adaptant les IDs
+            alert('⚠️ Veuillez utiliser le formulaire de réservation détaillé pour voir le récapitulatif. Cliquez sur une prestation pour ouvrir le formulaire complet.');
+        };
+        
+        // Fonction pour confirmer et envoyer la réservation
+        window.confirmAndSendBooking = async () => {
+            try {
+                const btn = event.target;
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enregistrement en cours...';
+                
+                const data = currentBookingData;
+                const totalTTC = data.servicePrice + data.travelCost;
+                
+                // Construire le message détaillé pour les notes
+                let locationText = '';
+                if (data.location === 'cabinet') {
+                    locationText = 'Au cabinet (180 rue des mimosas, Beauvoisin)';
+                } else if (data.location === 'domicile') {
+                    locationText = `À domicile - ${data.address}`;
+                    if (data.travelDetails) {
+                        locationText += `\n${data.travelDetails}\nFrais de déplacement: ${data.travelCost}€`;
+                    }
+                } else {
+                    locationText = 'À distance (visio/téléphone)';
+                }
+                
+                const dateObj = new Date(data.date + 'T00:00:00');
+                const dateFormatted = dateObj.toLocaleDateString('fr-FR', { 
+                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+                });
+                
+                // Construire les notes complètes
+                let fullNotes = `📍 ${locationText}\n`;
+                if (data.message) {
+                    fullNotes += `\n💬 Message du client:\n${data.message}`;
+                }
+                
+                // Enregistrer dans Firestore
+                const bookingData = {
+                    clientName: `${data.firstName} ${data.lastName}`,
+                    clientEmail: data.email,
+                    phone: data.phone,
+                    date: data.date,
+                    dateFormatted: dateFormatted,
+                    time: data.time,
+                    serviceName: data.service.name,
+                    servicePrice: data.servicePrice,
+                    location: data.location,
+                    locationText: locationText,
+                    address: data.address || '',
+                    travelCost: data.travelCost,
+                    travelDetails: data.travelDetails || '',
+                    totalTTC: totalTTC,
+                    notes: fullNotes,
+                    status: 'pending',
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString()
+                };
+                
+                // Enregistrer la réservation
+                await addDoc(collection(db, 'bookings'), bookingData);
+                
+                // Note: Envoi d'emails désactivé pour l'instant
+                // Les réservations sont visibles dans l'espace client et l'espace admin
+                
+                // Fermer les modals et réinitialiser
+                closeBookingSummary();
+                closeBookingModal();
+                
+                // Message de succès
+                alert('✅ Demande de réservation enregistrée !\n\nVotre demande est maintenant en attente de confirmation.\n\nVous pouvez la consulter dans votre espace client.\nJe vous recontacterai rapidement pour confirmer votre rendez-vous.');
+                
+            } catch (error) {
+                console.error('Erreur lors de l\'enregistrement:', error);
+                alert('❌ Une erreur est survenue lors de l\'enregistrement de votre réservation.\n\nVeuillez réessayer ou nous contacter directement par téléphone.');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Confirmer et envoyer';
+            }
         };
 
         // ===== UI UPDATES =====
@@ -2537,10 +2880,17 @@
 
         async function loadAllPublicPosts() {
             try {
+                console.log('🔍 Chargement des publications...');
                 const q = query(collection(db, 'publications'), orderBy('createdAt', 'desc'));
                 const snapshot = await getDocs(q);
+                console.log(`📚 ${snapshot.size} publication(s) trouvée(s)`);
                 
                 const container = document.getElementById('allPosts');
+                if (!container) {
+                    console.error('❌ Conteneur #allPosts introuvable');
+                    return;
+                }
+                
                 container.innerHTML = snapshot.empty ? '<p style="text-align: center; color: var(--text-color);">Aucune publication pour le moment</p>' : '';
                 
                 snapshot.forEach(docSnap => {
@@ -3423,11 +3773,11 @@
 
         async function loadAdminBookings() {
             try {
-                const q = query(collection(db, 'bookings'), orderBy('date', 'desc'));
+                const q = query(collection(db, 'bookings'), orderBy('createdAt', 'desc'));
                 const snapshot = await getDocs(q);
                 
                 const tbody = document.getElementById('adminBookingsList');
-                tbody.innerHTML = snapshot.empty ? '<tr><td colspan="6">Aucune réservation</td></tr>' : '';
+                tbody.innerHTML = snapshot.empty ? '<tr><td colspan="7">Aucune réservation</td></tr>' : '';
                 
                 let pending = 0, confirmed = 0;
                 const calendarEvents = [];
@@ -3451,13 +3801,31 @@
                     const hasInvoice = booking.invoiceGenerated ? ' style="opacity: 0.5;" disabled' : '';
                     const invoiceIcon = booking.invoiceGenerated ? '✓' : '';
                     
+                    // Formater la date
+                    const dateDisplay = booking.date ? new Date(booking.date).toLocaleDateString('fr-FR') : 'N/A';
+                    const timeDisplay = booking.time || '';
+                    
+                    // Info localisation et montant
+                    const locationInfo = booking.locationText || booking.location || '-';
+                    const totalInfo = booking.totalTTC ? `${booking.totalTTC}€` : (booking.servicePrice ? `${booking.servicePrice}€` : '-');
+                    
                     tr.innerHTML = `
-                        <td>${booking.date || 'N/A'} ${booking.time || ''}</td>
-                        <td>${booking.clientName || booking.clientEmail}</td>
-                        <td>${booking.serviceName || 'N/A'}</td>
+                        <td>${dateDisplay} ${timeDisplay}</td>
+                        <td>
+                            <strong>${booking.clientName || booking.clientEmail}</strong><br>
+                            <small style="color: var(--text-light);">${booking.clientEmail || ''}</small>
+                        </td>
+                        <td>
+                            ${booking.serviceName || 'N/A'}<br>
+                            <small style="color: var(--text-light);">${locationInfo}</small>
+                        </td>
                         <td>${booking.phone || '-'}</td>
+                        <td><strong style="color: var(--primary-color);">${totalInfo}</strong></td>
                         <td><span class="status-badge ${statusClass}">${statusText}</span></td>
                         <td>
+                            <button class="btn-icon" onclick="viewBookingDetails('${docSnap.id}')" title="Voir détails">
+                                <i class="fas fa-eye"></i>
+                            </button>
                             <button class="btn-icon" onclick="generateBookingPDF('${docSnap.id}')" title="Générer PDF" style="color: #d32f2f;">
                                 <i class="fas fa-file-pdf"></i>
                             </button>
@@ -3467,10 +3835,10 @@
                             <button class="btn-icon" onclick="createInvoiceFromBooking('${docSnap.id}')" title="Créer une facture"${hasInvoice}>
                                 <i class="fas fa-file-invoice-dollar"></i>${invoiceIcon}
                             </button>
-                            <button class="btn-icon" onclick="updateBookingStatus('${docSnap.id}', 'confirmed')" title="Confirmer">
+                            <button class="btn-icon" onclick="updateBookingStatus('${docSnap.id}', 'confirmed')" title="Confirmer" style="color: #10b981;">
                                 <i class="fas fa-check"></i>
                             </button>
-                            <button class="btn-icon" onclick="updateBookingStatus('${docSnap.id}', 'cancelled')" title="Annuler">
+                            <button class="btn-icon" onclick="updateBookingStatus('${docSnap.id}', 'cancelled')" title="Annuler" style="color: #ef4444;">
                                 <i class="fas fa-times"></i>
                             </button>
                             <button class="btn-icon" onclick="deleteBooking('${docSnap.id}')" title="Supprimer">
@@ -3495,7 +3863,8 @@
                             extendedProps: {
                                 clientName: booking.clientName,
                                 phone: booking.phone,
-                                status: booking.status
+                                status: booking.status,
+                                totalTTC: booking.totalTTC || booking.servicePrice
                             }
                         });
                     }
@@ -3509,6 +3878,10 @@
                 initAdminBookingsCalendar(calendarEvents);
             } catch (error) {
                 console.error('Erreur chargement réservations:', error);
+                const tbody = document.getElementById('adminBookingsList');
+                if (tbody) {
+                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: red;">Erreur de chargement des réservations</td></tr>';
+                }
             }
         }
 
@@ -4368,21 +4741,91 @@
                 const q = query(collection(db, 'bookings'), where('clientEmail', '==', email));
                 const snapshot = await getDocs(q);
                 
-                const container = document.getElementById('clientBookingsList');
-                container.innerHTML = snapshot.empty ? '<p>Aucune réservation pour le moment</p>' : '';
-                
+                // Trier côté client par date de création (plus récent en premier)
+                const bookings = [];
                 snapshot.forEach(docSnap => {
-                    const booking = docSnap.data();
+                    bookings.push({ id: docSnap.id, data: docSnap.data() });
+                });
+                bookings.sort((a, b) => {
+                    const dateA = a.data.createdAt?.toDate?.() || new Date(a.data.createdAt || 0);
+                    const dateB = b.data.createdAt?.toDate?.() || new Date(b.data.createdAt || 0);
+                    return dateB - dateA;
+                });
+                
+                const container = document.getElementById('clientBookingsList');
+                container.innerHTML = bookings.length === 0 ? '<p style="text-align: center; padding: 2rem; color: var(--text-color);">Aucune réservation pour le moment</p>' : '';
+                
+                bookings.forEach(item => {
+                    const booking = item.data;
+                    const bookingId = item.id;
                     const card = document.createElement('div');
                     card.className = 'booking-card';
+                    
+                    // Statut en français
+                    let statusText = 'En attente';
+                    let statusClass = 'pending';
+                    if (booking.status === 'confirmed') {
+                        statusText = 'Confirmée';
+                        statusClass = 'confirmed';
+                    } else if (booking.status === 'cancelled') {
+                        statusText = 'Annulée';
+                        statusClass = 'cancelled';
+                    } else if (booking.status === 'completed') {
+                        statusText = 'Terminée';
+                        statusClass = 'completed';
+                    }
+                    
+                    // Formater la date
+                    let dateFormatted = 'Date à confirmer';
+                    if (booking.date) {
+                        try {
+                            dateFormatted = new Date(booking.date).toLocaleDateString('fr-FR', {
+                                weekday: 'long',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            });
+                        } catch (e) {
+                            dateFormatted = booking.date;
+                        }
+                    }
+                    
+                    // Icône et texte de localisation
+                    let locationIcon = '📍';
+                    let locationText = 'Lieu à confirmer';
+                    if (booking.location === 'cabinet') {
+                        locationIcon = '🏠';
+                        locationText = 'Au cabinet';
+                    } else if (booking.location === 'domicile') {
+                        locationIcon = '🚗';
+                        locationText = booking.address ? `À domicile - ${booking.address}` : 'À domicile';
+                    } else if (booking.location === 'distance') {
+                        locationIcon = '📞';
+                        locationText = 'À distance (visio/téléphone)';
+                    }
+                    
                     card.innerHTML = `
                         <div class="booking-header">
-                            <span class="booking-number">#${docSnap.id.substring(0, 8)}</span>
-                            <span class="booking-status status-${booking.status || 'pending'}">${booking.status || 'En attente'}</span>
+                            <span class="booking-number">#${bookingId.substring(0, 8)}</span>
+                            <span class="booking-status status-${statusClass}">${statusText}</span>
                         </div>
-                        <h3>${booking.service || 'Service'}</h3>
-                        <p><i class="fas fa-calendar"></i> ${booking.date || 'Date à confirmer'}</p>
+                        <h3>${booking.serviceName || 'Service'}</h3>
+                        <p><i class="fas fa-calendar"></i> ${dateFormatted}</p>
                         <p><i class="fas fa-clock"></i> ${booking.time || 'Heure à confirmer'}</p>
+                        <p style="margin: 0.5rem 0;">${locationIcon} ${locationText}</p>
+                        ${booking.servicePrice ? `
+                            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee;">
+                                <p style="margin: 0.25rem 0; font-size: 0.95rem;"><strong>Prix service:</strong> ${booking.servicePrice}€</p>
+                                ${booking.travelCost ? `<p style="margin: 0.25rem 0; font-size: 0.95rem;"><strong>Frais déplacement:</strong> ${booking.travelCost}€</p>` : ''}
+                                ${booking.totalTTC ? `<p style="font-weight: 600; color: var(--primary-color); font-size: 1.1rem; margin-top: 0.5rem;"><i class="fas fa-euro-sign"></i> Total TTC: ${booking.totalTTC}€</p>` : ''}
+                            </div>
+                        ` : ''}
+                        ${booking.status === 'pending' ? `
+                            <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                                <button class="btn btn-secondary" style="flex: 1; font-size: 0.9rem;" onclick="alert('Fonction à venir')">Modifier</button>
+                                <button class="btn" style="flex: 1; font-size: 0.9rem; background: #dc3545;" onclick="alert('Fonction à venir')">Annuler</button>
+                            </div>
+                        ` : ''}
                     `;
                     container.appendChild(card);
                 });
@@ -4393,6 +4836,10 @@
                 }, 200);
             } catch (error) {
                 console.error('Erreur chargement client:', error);
+                const container = document.getElementById('clientBookingsList');
+                if (container) {
+                    container.innerHTML = '<p style="text-align: center; padding: 2rem; color: red;">Erreur de chargement des réservations</p>';
+                }
             }
         }
 
@@ -5513,15 +5960,39 @@
                 if (settingsDoc.exists()) {
                     const settings = settingsDoc.data();
                     
-                    // Mise à jour des infos de contact
+                    // Mise à jour des infos de contact - Téléphone
                     if (settings.companyPhone) {
-                        document.getElementById('contactPhone').textContent = settings.companyPhone;
-                        document.querySelector('a[href^="tel:"]').href = `tel:${settings.companyPhone.replace(/\s/g, '')}`;
+                        const phoneClean = settings.companyPhone.replace(/\s/g, '');
+                        // Hero section
+                        const heroPhone = document.getElementById('heroPhone');
+                        if (heroPhone) heroPhone.textContent = settings.companyPhone;
+                        
+                        // Modal booking
+                        const modalPhone = document.getElementById('modalPhone');
+                        const modalPhoneLink = document.getElementById('modalPhoneLink');
+                        if (modalPhone) modalPhone.textContent = settings.companyPhone;
+                        if (modalPhoneLink) modalPhoneLink.href = `tel:${phoneClean}`;
+                        
+                        // Contact section
+                        const contactPhone = document.getElementById('contactPhone');
+                        const contactPhoneLink = document.getElementById('contactPhoneLink');
+                        if (contactPhone) contactPhone.textContent = settings.companyPhone;
+                        if (contactPhoneLink) contactPhoneLink.href = `tel:${phoneClean}`;
                     }
                     
+                    // Mise à jour des infos de contact - Email
                     if (settings.companyEmail) {
-                        document.getElementById('contactEmail').textContent = settings.companyEmail;
-                        document.querySelector('a[href^="mailto:"]').href = `mailto:${settings.companyEmail}`;
+                        // Modal booking
+                        const modalEmail = document.getElementById('modalEmail');
+                        const modalEmailLink = document.getElementById('modalEmailLink');
+                        if (modalEmail) modalEmail.textContent = settings.companyEmail;
+                        if (modalEmailLink) modalEmailLink.href = `mailto:${settings.companyEmail}`;
+                        
+                        // Contact section
+                        const contactEmail = document.getElementById('contactEmail');
+                        const contactEmailLink = document.querySelector('.contact-card a[href^="mailto:"]');
+                        if (contactEmail) contactEmail.textContent = settings.companyEmail;
+                        if (contactEmailLink) contactEmailLink.href = `mailto:${settings.companyEmail}`;
                     }
                     
                     if (settings.companyAddress) {
@@ -5563,12 +6034,137 @@
             }
         }
 
+        // Adresse de référence du cabinet
+        const CABINET_ADDRESS = '180 rue des mimosas, Hameau de Franquevaux, 30640 Beauvoisin, France';
+        
+        // Fonction pour calculer la distance entre deux adresses
+        async function calculateDistance(clientAddress) {
+            try {
+                console.log('🔍 Calcul distance pour:', clientAddress);
+                
+                // Géocodage des adresses avec Nominatim (OpenStreetMap)
+                const geocodeCabinet = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(CABINET_ADDRESS)}`, {
+                    headers: { 'User-Agent': 'SabrineSJK-Website' }
+                });
+                const cabinetData = await geocodeCabinet.json();
+                console.log('📍 Cabinet trouvé:', cabinetData.length > 0 ? 'OUI' : 'NON', cabinetData[0]?.display_name);
+                
+                // Petit délai pour respecter les limites de Nominatim (1 req/sec)
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                const geocodeClient = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(clientAddress)}`, {
+                    headers: { 'User-Agent': 'SabrineSJK-Website' }
+                });
+                const clientData = await geocodeClient.json();
+                console.log('📍 Client trouvé:', clientData.length > 0 ? 'OUI' : 'NON', clientData[0]?.display_name);
+                
+                if (!cabinetData.length || !clientData.length) {
+                    console.warn('⚠️ Adresse non trouvée - Cabinet:', cabinetData.length, 'Client:', clientData.length);
+                    throw new Error('Adresse non trouvée');
+                }
+                
+                const cabinetCoords = { lat: parseFloat(cabinetData[0].lat), lon: parseFloat(cabinetData[0].lon) };
+                const clientCoords = { lat: parseFloat(clientData[0].lat), lon: parseFloat(clientData[0].lon) };
+                
+                console.log('🗺️ Coordonnées - Cabinet:', cabinetCoords, 'Client:', clientCoords);
+                
+                // Calcul de la distance "à vol d'oiseau" (Haversine)
+                const R = 6371; // Rayon de la Terre en km
+                const dLat = (clientCoords.lat - cabinetCoords.lat) * Math.PI / 180;
+                const dLon = (clientCoords.lon - cabinetCoords.lon) * Math.PI / 180;
+                const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                          Math.cos(cabinetCoords.lat * Math.PI / 180) * Math.cos(clientCoords.lat * Math.PI / 180) *
+                          Math.sin(dLon/2) * Math.sin(dLon/2);
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                const distance = R * c;
+                
+                // Ajouter 30% pour approximer la distance routière
+                const roadDistance = distance * 1.3;
+                
+                console.log('✅ Distance calculée:', distance.toFixed(1), 'km (vol d\'oiseau)', '→', roadDistance.toFixed(1), 'km (route)');
+                
+                return parseFloat(roadDistance.toFixed(1));
+            } catch (error) {
+                console.error('❌ Erreur calcul distance:', error);
+                return null;
+            }
+        }
+        
+        // Fonction pour gérer l'affichage des frais de déplacement
+        function updateTravelCost(prefix) {
+            const locationSelect = document.getElementById(`${prefix}-location`);
+            const addressGroup = document.getElementById(`${prefix}-address-group`);
+            const addressInput = document.getElementById(`${prefix}-address`);
+            const distanceInput = document.getElementById(`${prefix}-distance`);
+            const travelInfo = document.getElementById(`${prefix}-travel-info`);
+            const travelCost = document.getElementById(`${prefix}-travel-cost`);
+            
+            const location = locationSelect.value;
+            
+            if (location === 'domicile') {
+                addressGroup.style.display = 'block';
+                addressInput.required = true;
+                distanceInput.required = true;
+                
+                // Calculer les frais quand la distance est saisie
+                if (distanceInput.value && parseFloat(distanceInput.value) > 0) {
+                    const km = parseFloat(distanceInput.value);
+                    const cost = Math.round(km);
+                    
+                    travelInfo.style.display = 'block';
+                    travelCost.textContent = `${cost}€ (${km} km aller-retour)`;
+                    
+                    // Stocker le coût pour l'utiliser lors de la soumission
+                    document.getElementById(`${prefix}-travel-cost-value`).value = cost;
+                } else {
+                    travelInfo.style.display = 'none';
+                    document.getElementById(`${prefix}-travel-cost-value`).value = 0;
+                }
+            } else {
+                addressGroup.style.display = 'none';
+                addressInput.required = false;
+                if (distanceInput) distanceInput.required = false;
+                travelInfo.style.display = 'none';
+                document.getElementById(`${prefix}-travel-cost-value`).value = 0;
+            }
+        }
+        
+        // Event listeners pour les formulaires
+        function initializeFormListeners() {
+            // Quick booking form
+            const quickLocation = document.getElementById('quick-location');
+            const quickDistance = document.getElementById('quick-distance');
+            
+            if (quickLocation) {
+                quickLocation.addEventListener('change', () => updateTravelCost('quick'));
+            }
+            
+            if (quickDistance) {
+                quickDistance.addEventListener('input', () => updateTravelCost('quick'));
+            }
+            
+            // Booking modal form
+            const bookingLocation = document.getElementById('booking-location');
+            const bookingDistance = document.getElementById('booking-distance');
+            
+            if (bookingLocation) {
+                bookingLocation.addEventListener('change', () => updateTravelCost('booking'));
+            }
+            
+            if (bookingDistance) {
+                bookingDistance.addEventListener('input', () => updateTravelCost('booking'));
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             // Charger les publications au chargement
             loadAllPublicPosts();
             
             // Charger les infos de contact
             loadContactInfo();
+            
+            // Initialiser les écouteurs pour les frais de déplacement
+            initializeFormListeners();
             
             // Compteur de caractères
             document.getElementById('publication-content').addEventListener('input', updateCharCount);
@@ -6037,32 +6633,8 @@
                 }
             });
 
-            // Booking form submission (modal)
-            document.getElementById('bookingForm').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                const formData = {
-                    service: document.getElementById('bookingServiceName').textContent,
-                    firstName: document.getElementById('booking-firstname').value,
-                    lastName: document.getElementById('booking-lastname').value,
-                    email: document.getElementById('booking-email').value,
-                    phone: document.getElementById('booking-phone').value,
-                    date: document.getElementById('booking-date').value,
-                    time: document.getElementById('booking-time').value,
-                    message: document.getElementById('booking-message').value,
-                    status: 'pending',
-                    createdAt: new Date().toISOString()
-                };
-
-                try {
-                    await setDoc(doc(collection(db, 'bookings')), formData);
-                    alert('✅ Réservation envoyée ! Vous recevrez une confirmation par email.');
-                    closeBookingModal();
-                } catch (error) {
-                    console.error('Erreur réservation:', error);
-                    alert('❌ Erreur lors de la réservation. Réessayez ou contactez-nous directement.');
-                }
-            });
+            // Note: La soumission du formulaire bookingForm est maintenant gérée via le récapitulatif
+            // Le bouton ouvre le modal de récapitulatif au lieu de soumettre directement
 
             // Quick booking form (section reservation)
             document.getElementById('quickBookingForm').addEventListener('submit', async (e) => {
@@ -6071,6 +6643,19 @@
                 const firstName = document.getElementById('quick-firstname').value;
                 const lastName = document.getElementById('quick-lastname').value;
                 const serviceName = document.getElementById('quick-service').options[document.getElementById('quick-service').selectedIndex].text;
+                const location = document.getElementById('quick-location').value;
+                const address = document.getElementById('quick-address').value;
+                
+                // Construire les notes avec les infos de déplacement
+                let notes = document.getElementById('quick-message').value;
+                if (location === 'domicile' && address) {
+                    const travelCostText = document.getElementById('quick-travel-cost').textContent;
+                    notes += `\n\n📍 Séance à domicile\nAdresse: ${address}\n${travelCostText}`;
+                } else if (location === 'cabinet') {
+                    notes += '\n\n📍 Séance au cabinet (180 rue des mimosas, Beauvoisin)';
+                } else if (location === 'distance') {
+                    notes += '\n\n📍 Séance à distance (visio/téléphone)';
+                }
                 
                 const bookingData = {
                     clientName: `${firstName} ${lastName}`,
@@ -6079,7 +6664,9 @@
                     date: document.getElementById('quick-date').value,
                     time: document.getElementById('quick-time').value,
                     serviceName: serviceName,
-                    notes: document.getElementById('quick-message').value,
+                    location: location,
+                    address: address || '',
+                    notes: notes,
                     status: 'pending',
                     createdAt: new Date().toISOString()
                 };
@@ -6088,6 +6675,8 @@
                     await addDoc(collection(db, 'bookings'), bookingData);
                     alert('✅ Demande de réservation envoyée ! Vous recevrez une confirmation par email.');
                     document.getElementById('quickBookingForm').reset();
+                    document.getElementById('quick-address-group').style.display = 'none';
+                    document.getElementById('quick-travel-info').style.display = 'none';
                 } catch (error) {
                     console.error('Erreur réservation:', error);
                     alert('❌ Erreur lors de la réservation. Réessayez ou contactez-nous directement.');
